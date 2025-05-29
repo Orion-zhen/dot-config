@@ -35,8 +35,7 @@ git reset --hard origin/main
 Finally, copy the backup files:
 
 ```bash
-cp -rn ~/.config.bak ~/.config
+cp -rn ~/.config.bak/* ~/.config/
 ```
 
 Parameter `-n` will not overwrite existing config files.
-
