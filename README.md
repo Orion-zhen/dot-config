@@ -17,7 +17,7 @@ git init --initial-branch=main
 Add remote repository:
 
 ```bash
-git remote add origin https://Orion-zhen/dot-config.git
+git remote add origin https://github.com/Orion-zhen/dot-config.git
 ```
 
 Associate local branch with remote branch:
