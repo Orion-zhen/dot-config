@@ -20,6 +20,9 @@
 !nvim/
 !nvim/**
 
+!pacman/
+!pacman/**
+
 !pip/
 !pip/**
 
