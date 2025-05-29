@@ -20,6 +20,12 @@ Add remote repository:
 git remote add origin https://Orion-zhen/dot-config.git
 ```
 
+Associate local branch with remote branch:
+
+```bash
+git branch --set-upstream-to origin/main
+```
+
 Fetch content and reset current commit to main:
 
 ```bash
