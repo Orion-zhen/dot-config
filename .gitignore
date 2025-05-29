@@ -17,9 +17,6 @@
 !mako/
 !mako/**
 
-!mpv/
-!mpv/**
-
 !nvim/
 !nvim/**
 
