@@ -11,6 +11,9 @@
 !hypr/
 !hypr/**
 
+!gnupg/
+!gnupg/**
+
 !mako/
 !mako/**
 

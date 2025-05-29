@@ -1,0 +1,107 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: "Hack Nerd Font", "Font Awesome";
+    /* font-weight: 500; */
+    font-size: 20px;
+
+    color: #ffffff;
+
+    border-radius: 10px;
+    text-shadow: none;
+    
+    transition-property: background;
+    transition-duration: 0.2s;
+
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+/* module groups */
+.modules-left {
+    background-color: transparent;
+    margin: 2px 0 0 4px;
+}
+.modules-right {
+    background-color: transparent;
+    margin: 2px 0 0 4px;
+}
+.modules-center {
+    background-color: transparent;
+    margin: 2px 0 0 4px;
+}
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > * {
+    margin-left: 4px;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > * {
+    margin-right: 4px;
+}
+
+#window {
+    font-weight: 400;
+    background-color: rgba(0,119,179,0.6);
+    padding: 0 12px;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces {
+	background: rgba(0, 43, 51, 0.85);
+	transition: none;
+}
+
+#workspaces button {
+    border: none;
+    padding: 2 16px;
+    background-color: transparent;
+}
+
+#workspaces button:hover {
+    background: rgba(0,153,153,1);
+}
+
+#workspaces button.active {
+    background: rgba(0,119,179,0.6);
+}
+
+#workspaces button.active:hover {
+    background: rgba(0,153,153,1);
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#mode {
+    background-color: #cc3436;
+    font-weight: bold;
+    border-bottom: 3px solid #ffffff;
+}
+
+/* modules default */
+#clock,
+#cpu,
+#memory,
+#disk,
+#network,
+#pulseaudio,
+#tray,
+#mode,
+#backlight,
+#temperature,
+#battery,
+#bluetooth,
+#custom-launcher,
+#taskbar,
+#keyboard-state,
+#power-profiles-daemon {
+    padding: 0 12px;
+    background-color: rgba(0, 43, 51, 0.85);
+}

@@ -1,0 +1,28 @@
+sort=-priority
+layer=overlay
+background-color=#252A34f0
+width=500
+height=500
+border-size=3
+border-color=#08D9D6
+border-radius=10
+icons=0
+max-icon-size=64
+default-timeout=5000
+ignore-timeout=0
+font="Hack Nerd Font" 20
+margin=12
+padding=12,20
+
+[summary="Wayland 诊断"]
+invisible=1
+
+[summary="Wayland Diagnose"]
+invisible=1
+
+[urgency=low]
+border-color=#EAEAEA
+
+[urgency=critical]
+border-color=#FF2E63
+default-timeout=0
