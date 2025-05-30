@@ -20,8 +20,11 @@ if test -d "$HOME/opt"
             end
             # 如果存在 lib 子目录，则将其添加到 LD_LIBRARY_PATH 中
             if test -d "$sub/lib"
-                set -gx LD_LIBRARY_PATH $sub/lib $LD_LIBRARY_PATH
-                set -gx DYLD_LIBRARY_PATH $sub/lib $DYLD_LIBRARY_PATH
+                if test (uname) = "Linux"
+                    set -gx LD_LIBRARY_PATH $sub/lib $LD_LIBRARY_PATH
+                else if test (uname) = "Darwin"
+                    set -gx DYLD_LIBRARY_PATH $sub/lib $DYLD_LIBRARY_PATH
+                end
             end
         end
     end
