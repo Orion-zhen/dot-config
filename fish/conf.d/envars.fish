@@ -30,10 +30,6 @@ set -gx GPGHOME $HOME/.config/gnupg
 
 # set -gx HOMEBREW_NO_INSTALL_CLEANUP false
 
-# export HOMEBREW_API_DOMAIN
-# export HOMEBREW_BOTTLE_DOMAIN
-# export HOMEBREW_PIP_INDEX_URL
-
 # Wine 相关设置（如果需要，可取消注释）
-# set -x WINEARCH win32
-# set -x WINEPREFIX ~/.local/share/wineprefixes/wine32
+# set -gx WINEARCH win32
+# set -gx WINEPREFIX ~/.local/share/wineprefixes/wine32
