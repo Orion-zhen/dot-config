@@ -8,6 +8,9 @@
 !fish/
 !fish/**
 
+!git/
+!git/**
+
 !hypr/
 !hypr/**
 
