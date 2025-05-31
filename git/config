@@ -3,13 +3,13 @@ process = git-lfs filter-process
 required = true
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
-
 [user]
 name =
 email =
 # signingkey =
-
+[init]
+defaultBranch = main
 [commit]
-# gpgsign = true
+gpgsign = false
 [tag]
-# gpgSign = true
+gpgsign = false
