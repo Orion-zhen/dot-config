@@ -20,16 +20,16 @@ Add remote repository:
 git remote add origin https://github.com/Orion-zhen/dot-config.git
 ```
 
+Fetch content and reset current commit to main:
+
+```bash
+git fetch && git reset --hard origin/main
+```
+
 Associate local branch with remote branch:
 
 ```bash
 git branch --set-upstream-to origin/main
-```
-
-Fetch content and reset current commit to main:
-
-```bash
-git reset --hard origin/main
 ```
 
 Finally, copy the backup files:
