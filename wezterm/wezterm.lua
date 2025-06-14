@@ -66,7 +66,7 @@ config.window_background_opacity = 0.8
 config.macos_window_background_blur = 32
 
 -- 字体设置
-config.font = wezterm.font({ family = "Maple Mono NF", style = "Normal" })
+config.font = wezterm.font_with_fallback({ { family = "Maple Mono NF", style = "Normal" }, { family = "Hack Nerd Font", style = "Normal" } })
 config.font_size = 15.0
 
 -- 窗口栏设置
