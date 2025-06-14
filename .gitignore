@@ -15,6 +15,7 @@
 
 !hypr/
 !hypr/**
+hypr/land/monitors.conf
 
 !gnupg/
 !gnupg/**
