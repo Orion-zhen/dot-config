@@ -3,6 +3,8 @@
 !README.md
 !.gitignore
 
+!code-flags.conf
+
 !starship.toml
 
 !fish/
