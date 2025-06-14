@@ -2,6 +2,8 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+local is_hyprland = os.getenv("HYPRLAND_INSTANCE_SIGNATURE") ~= nil
+
 -- 配色方案
 -- 参考 https://github.com/mbadolato/iTerm2-Color-Schemes#screenshots
 config.color_scheme = "Dark+"
@@ -68,7 +70,11 @@ config.font = wezterm.font({ family = "Maple Mono NF", style = "Normal" })
 config.font_size = 15.0
 
 -- 窗口栏设置
-config.window_decorations = "RESIZE | MACOS_FORCE_ENABLE_SHADOW | INTEGRATED_BUTTONS"
+if is_hyprland then
+    config.window_decorations = "NONE"
+else
+    config.window_decorations = "RESIZE | MACOS_FORCE_ENABLE_SHADOW | INTEGRATED_BUTTONS"
+end
 -- RESIZE: 可调整大小
 -- TITLE: 启用标题栏
 -- NONE: 啥都没有
@@ -85,5 +91,9 @@ config.pane_focus_follows_mouse = true
 
 -- 鼠标滑动切换标签页
 config.mouse_wheel_scrolls_tabs = true
+
+if is_hyprland then
+    config.enable_wayland = false
+end
 
 return config
