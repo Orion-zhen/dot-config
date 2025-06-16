@@ -9,7 +9,9 @@ function module.apply(config)
     -- 样式
     config.use_fancy_tab_bar = true
     -- 仅有一个标签页时关闭标签栏
-    config.hide_tab_bar_if_only_one_tab = true
+    if is_hyprland then
+        config.hide_tab_bar_if_only_one_tab = true
+    end
     -- 标签栏置底
     config.tab_bar_at_bottom = false
 
