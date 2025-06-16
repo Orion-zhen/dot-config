@@ -24,6 +24,9 @@ hypr/land/monitors.conf
 !gnupg/
 !gnupg/**
 
+!kitty/
+!kitty/**
+
 !mako/
 !mako/**
 
