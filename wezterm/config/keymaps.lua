@@ -40,7 +40,7 @@ function module.apply(config)
         -- Ctrl + Backspace 清空一行
         -- macOS: Command + Backspace
         {
-            (wezterm.target_triple == "aarch64-apple-darwin") and "CMD" or "CTRL",
+            mods = (wezterm.target_triple == "aarch64-apple-darwin") and "CMD" or "CTRL",
             key = "Backspace",
             action = act.SendString("\u{15}")
         },
