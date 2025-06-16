@@ -7,6 +7,9 @@
 
 !starship.toml
 
+!btop/
+!btop/**
+
 !clipse/
 !clipse/config.json
 !clipse/custom_theme.json
