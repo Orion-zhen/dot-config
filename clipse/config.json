@@ -18,9 +18,9 @@
         "preview": " ",
         "quit": "q",
         "remove": "x",
-        "selectDown": "ctrl+down",
+        "selectDown": "shift+down",
         "selectSingle": "s",
-        "selectUp": "ctrl+up",
+        "selectUp": "shift+up",
         "togglePin": "p",
         "togglePinned": "tab",
         "up": "up",
@@ -28,8 +28,8 @@
     },
     "imageDisplay": {
         "type": "kitty",
-        "scaleX": 16,
-        "scaleY": 16,
-        "heightCut": 3
+        "scaleX": 20,
+        "scaleY": 20,
+        "heightCut": 12
     }
 }
