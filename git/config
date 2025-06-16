@@ -1,15 +1,59 @@
+[include]
+# 新建 ~/.config/git/user.conf 并存放用户配置:
+# [user]
+# name =
+# email =
+# signingkey =
+path = ~/.config/git/user.conf
+
+[alias]
+br = branch
+cm = commit -m
+cms = commit -S -m
+co = checkout
+lg = log --oneline --graph --decorate --all
+st = status
+
+[branch]
+# 按最近提交排序分支
+sort = -committerdate
+
+[color]
+ui = auto
+
+[core]
+# status 使用内置文件系统监控
+fsmonitor = true
+
+[diff]
+# 更易读的 diff 算法
+algorithm = patience
+
+[fetch]
+# 自动清理已删除的分支和 tag
+prune = true
+pruneTags = true
+
 [filter "lfs"]
 process = git-lfs filter-process
 required = true
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
-[user]
-name =
-email =
-# signingkey =
+
 [init]
 defaultBranch = main
-[commit]
-gpgsign = false
-[tag]
-gpgsign = false
+
+[pack]
+# 自动使用多核压缩
+threads = 0
+
+[pull]
+rebase = true
+
+[push]
+# push 自动跟踪上游
+autoSetupRemote = true
+
+[rebase]
+# 在 rebase 前暂存, rebase 后恢复
+autoStash = true

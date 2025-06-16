@@ -15,7 +15,7 @@
 !fish/**
 
 !git/
-!git/**
+!git/config
 
 !hypr/
 !hypr/**
