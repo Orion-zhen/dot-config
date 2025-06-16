@@ -38,6 +38,9 @@ nvim/lazyvim.json
 !pip/
 !pip/**
 
+!rofi/
+!rofi/**
+
 !tmux/
 !tmux/**
 
