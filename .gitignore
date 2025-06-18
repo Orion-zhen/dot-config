@@ -36,6 +36,9 @@ hypr/land/monitors.conf
 !mako/
 !mako/**
 
+!matugen
+!matugen/**
+
 !nvim/
 !nvim/**
 nvim/lazy-lock.json

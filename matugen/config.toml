@@ -1,0 +1,26 @@
+[config]
+version_check = false
+
+[config.custom_keywords]
+font = "Maple Mono NF"
+font_cn = "Noto Sans CJK SC"
+
+[templates.btop]
+input_path = "templates/btop/material.theme"
+output_path = "~/.config/btop/themes/material.theme"
+
+[templates.hyprland]
+input_path = "templates/hypr/colors.conf"
+output_path = "~/.config/hypr/land/colors.conf"
+
+[templates.hyprlock]
+input_path = "templates/hypr/hyprlock.conf"
+output_path = "~/.config/hypr/hyprlock.conf"
+
+[templates.rofi]
+input_path = "templates/rofi/material.rasi"
+output_path = "~/.config/rofi/themes/material.rasi"
+
+[templates.wezterm]
+input_path = "templates/wezterm/colors.lua.template"
+output_path = "~/.config/wezterm/config/colors.lua"
