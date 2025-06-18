@@ -24,6 +24,9 @@
 !hypr/**
 hypr/land/monitors.conf
 
+!hyprpanel/
+!hyprpanel/config.json
+
 !gnupg/
 !gnupg/**
 
