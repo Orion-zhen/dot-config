@@ -3,6 +3,8 @@
 !README.md
 !.gitignore
 
+!avatar.jpg
+
 !code-flags.conf
 
 !starship.toml

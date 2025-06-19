@@ -78,5 +78,6 @@
   "theme.matugen_settings.variation": "standard_1",
   "theme.matugen_settings.scheme_type": "tonal-spot",
   "bar.windowtitle.class_name": true,
-  "bar.windowtitle.label": true
+  "bar.windowtitle.label": true,
+  "menus.dashboard.powermenu.avatar.image": "~/.config/avatar.jpg"
 }
