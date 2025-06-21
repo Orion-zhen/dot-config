@@ -9,6 +9,10 @@ font_cn = "Noto Sans CJK SC"
 input_path = "templates/btop/material.theme"
 output_path = "~/.config/btop/themes/material.theme"
 
+[templates.clipse]
+input_path = "templates/clipse/custom_theme.json"
+output_path = "~/.config/clipse/custom_theme.json"
+
 [templates.hyprland]
 input_path = "templates/hypr/colors.conf"
 output_path = "~/.config/hypr/land/colors.conf"
