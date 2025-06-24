@@ -1,5 +1,8 @@
 set -gx PATH $PATH $HOME/.local/bin
 
+# cargo install
+set -gx PATH $PATH $HOME/.cargo/bin
+
 if test -d /opt/cuda
     set -gx PATH $PATH /opt/cuda/bin
 end
