@@ -1,0 +1,113 @@
+[
+  {
+    "name": "Calculator",
+    "alias": null,
+    "display_name": "Calculator",
+    "on_return": "copy",
+    "next_content": null,
+    "type": "calculation",
+    "priority": 1.0,
+    "exit": true,
+    "shortcut": true,
+    "spawn_focus": true,
+    "async": false,
+    "home": "Search",
+    "args": {
+      "capabilities": [
+        "calc.math",
+        "calc.units"
+      ]
+    },
+    "binds": null,
+    "actions": null,
+    "add_actions": null
+  },
+  {
+    "name": "App Launcher",
+    "alias": "app",
+    "tag_start": null,
+    "tag_end": null,
+    "display_name": null,
+    "on_return": null,
+    "next_content": null,
+    "type": "app_launcher",
+    "priority": 3.0,
+    "exit": true,
+    "shortcut": true,
+    "spawn_focus": true,
+    "async": false,
+    "home": "Home",
+    "args": {},
+    "binds": null,
+    "actions": null,
+    "add_actions": null
+  },
+  {
+    "name": "Kill Process",
+    "alias": "kill",
+    "tag_start": null,
+    "tag_end": null,
+    "display_name": null,
+    "on_return": null,
+    "next_content": null,
+    "type": "process",
+    "priority": 6.0,
+    "exit": true,
+    "shortcut": true,
+    "spawn_focus": true,
+    "async": false,
+    "home": "Search",
+    "args": {},
+    "binds": null,
+    "actions": null,
+    "add_actions": null
+  },
+  {
+    "name": "Web Search",
+    "alias": "ddg",
+    "tag_start": "{keyword}",
+    "tag_end": null,
+    "display_name": "DuckDuckGO Search",
+    "on_return": null,
+    "next_content": null,
+    "type": "web_launcher",
+    "priority": 100.0,
+    "exit": true,
+    "shortcut": true,
+    "spawn_focus": true,
+    "async": false,
+    "home": "Search",
+    "args": {
+      "icon": "duckduckgo",
+      "search_engine": "duckduckgo"
+    },
+    "binds": null,
+    "actions": null,
+    "add_actions": null
+  },
+  {
+    "name": "Clipboard",
+    "type": "clipboard-execution",
+    "args": {
+      "capabilities": [
+        "url",
+        "colors.hex",
+        "colors.rgb",
+        "colors.hsl",
+        "calc.math",
+        "calc.units"
+      ]
+    },
+    "priority": 1,
+    "home": "Home"
+  },
+  {
+    "name": "Emoji Picker",
+    "type": "emoji_picker",
+    "args": {
+      "default_skin_tone": "Simpsons"
+    },
+    "priority": 4,
+    "home": "Search"
+  }
+]

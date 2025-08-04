@@ -55,6 +55,9 @@ nvim/lazyvim.json
 !rofi/
 !rofi/**
 
+!sherlock/
+!sherlock/**
+
 !tmux/
 !tmux/**
 

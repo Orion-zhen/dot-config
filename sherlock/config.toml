@@ -1,0 +1,25 @@
+[default_apps]
+terminal = "wezterm"
+
+[appearance]
+width = 900
+height = 600
+icon_size = 30
+opacity = 0.95
+mod_key_ascii = [
+    "Shift",
+    "Caps",
+    "Ctrl",
+    "Meta",
+    "Alt",
+    "Super",
+    "Hyper",
+    "Ctrl",
+]
+
+[backdrop]
+enable = true
+opacity = 0.8
+
+[expand]
+enable = false
