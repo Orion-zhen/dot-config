@@ -69,3 +69,6 @@ nvim/lazyvim.json
 
 !wlogout/
 !wlogout/**
+
+!xdg-desktop-portal/
+!xdg-desktop-portal/**
