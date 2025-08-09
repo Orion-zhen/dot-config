@@ -42,3 +42,7 @@ FOCUSED_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 
 # 使用 hyprpaper 设置壁纸
 hyprctl hyprpaper reload "$FOCUSED_MONITOR","$WALLPAPER_FULL_PATH"
+# 如果可以, 则相应更改配色
+if command -v matugen &> /dev/null; then
+    matugen image "$WALLPAPER_FULL_PATH"
+fi
