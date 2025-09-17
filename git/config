@@ -8,6 +8,7 @@ path = ~/.config/git/user.conf
 
 [alias]
 br = branch
+cl = clone --recursive --depth 1
 cm = commit -m
 cms = commit -S -m
 co = checkout
