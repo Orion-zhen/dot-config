@@ -11,6 +11,10 @@ if type -q autojump
     abbr j "jump"
 end
 
+if type -q rg
+    abbr grep rg
+end
+
 if type -q fastfetch
     abbr ff "fastfetch"
     abbr fetch "fastfetch"
