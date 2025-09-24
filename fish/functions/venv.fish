@@ -1,5 +1,5 @@
 # 自动激活虚拟环境。向上查找当前目录下是否存在 .venv/bin/activate.fish 文件，若未找到则尝试 $HOME/.venv/bin/activate.fish
-function act --description "activate pyvenv"
+function venv --description "activate python venv"
     set venv_dir ".venv"
     if test (count $argv) -ge 1
         set venv_dir $argv[1]
@@ -16,5 +16,7 @@ function act --description "activate pyvenv"
     end
     if test $found -eq 0 -a -r "$HOME/$venv_dir/bin/activate"
         source "$HOME/$venv_dir/bin/activate.fish"
+    else
+        echo "No python venv found"
     end
 end
