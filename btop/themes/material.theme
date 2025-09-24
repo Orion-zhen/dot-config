@@ -2,7 +2,7 @@
 # tempalte: ~/.config/matugen/templates/btop/material.theme
 
 # Main background, empty for terminal default, need to be empty if you want transparent background
-theme[main_bg]="#131318"
+theme[main_bg]="#121318"
 
 # Main text color
 theme[main_fg]="#e4e1e9"
@@ -11,16 +11,16 @@ theme[main_fg]="#e4e1e9"
 theme[title]="#e4e1e9"
 
 # Highlight color for keyboard shortcuts
-theme[hi_fg]="#bbc3ff"
+theme[hi_fg]="#bac3ff"
 
 # Background color of selected item in processes box
-theme[selected_bg]="#3a4379"
+theme[selected_bg]="#394379"
 
 # Foreground color of selected item in processes box
 theme[selected_fg]="#dee0ff"
 
 # Color of inactive/disabled text
-theme[inactive_fg]="#c7c5d0"
+theme[inactive_fg]="#c6c5d0"
 
 # Color of text appearing on top of graphs, i.e uptime and current network graph scaling
 theme[graph_text]="#dee0ff"
@@ -32,10 +32,10 @@ theme[meter_bg]="#34343a"
 theme[proc_misc]="#dee0ff"
 
 # CPU, Memory, Network, Proc box outline colors
-theme[cpu_box]="#bbc3ff"
+theme[cpu_box]="#bac3ff"
 theme[mem_box]="#c3c5dd"
 theme[net_box]="#90909a"
-theme[proc_box]="#e6bad7"
+theme[proc_box]="#e5bad8"
 
 # Box divider line and small boxes line color
 theme[div_line]="#90909a"

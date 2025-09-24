@@ -1,11 +1,11 @@
 * {
-    background: #131318;
+    background: #121318;
     surface-alt: #1f1f25;
     surface-translucent: #29292f80;
-    accent: #bbc3ff;
+    accent: #bac3ff;
     foreground: #e4e1e9;
-    foreground-muted: #c7c5d0;
-    on-accent: #232c61;
+    foreground-muted: #c6c5d0;
+    on-accent: #222c61;
 
     font: "Hack Nerd Font 14";
 

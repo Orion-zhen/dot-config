@@ -6,31 +6,31 @@ local module = {}
 function module.apply(config)
     -- config.color_scheme = "Dark+"
     config.colors = {
-        background = "#131318",
+        background = "#121318",
         foreground = "#e4e1e9",
-        cursor_bg = "#bbc3ff",
-        cursor_fg = "#232c61",
-        cursor_border = "#bbc3ff",
-        selection_bg = "#5d3c54",
+        cursor_bg = "#bac3ff",
+        cursor_fg = "#222c61",
+        cursor_border = "#bac3ff",
+        selection_bg = "#5d3c55",
         selection_fg = "#ffd7f1",
         scrollbar_thumb = "#34343a",
         split = "#90909a",
-        compose_cursor = "#e6bad7"
+        compose_cursor = "#e5bad8"
     }
 
     -- 标签栏配色
     config.colors.tab_bar = {
-        background = "#131318",
+        background = "#121318",
         -- 活跃标签页
         active_tab = {
-            bg_color = "#3a4379",
+            bg_color = "#394379",
             fg_color = "#dee0ff",
             intensity = "Bold",
         },
         -- 非活跃标签页
         inactive_tab = {
             bg_color = "#46464f",
-            fg_color = "#c7c5d0",
+            fg_color = "#c6c5d0",
             intensity = "Normal",
         },
         -- 非活跃标签页鼠标悬停
@@ -42,7 +42,7 @@ function module.apply(config)
         -- 新窗口
         new_tab = {
             bg_color = "#46464f",
-            fg_color = "#c7c5d0",
+            fg_color = "#c6c5d0",
         },
     }
 end
