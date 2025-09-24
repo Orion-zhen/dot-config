@@ -58,6 +58,9 @@ nvim/lazyvim.json
 !sherlock/
 !sherlock/**
 
+!tealdeer
+!tealdeer/**
+
 !tmux/
 !tmux/**
 
