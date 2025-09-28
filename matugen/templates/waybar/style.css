@@ -1,0 +1,155 @@
+* {
+    font-family: Maple Mono NF, Hack Nerd Font;
+    font-size: 20px;
+    border: none;
+    border-radius: 10;
+}
+
+window#waybar {
+    background: transparent;
+    color: {{colors.on_surface.default.hex}};
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+button {
+    box-shadow: inset 0 -3px transparent;
+}
+
+button:hover {
+    background: {{colors.surface_container_low.default.hex}}; /* Use a state layer for hover */
+}
+
+.modules-left {
+    margin-left: 8px;
+}
+.modules-right {
+    margin-right: 8px;
+}
+
+/* Reset all modules to have a unified background */
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 10px;
+    background: {{colors.secondary_fixed_dim.default.hex}};
+    color: {{colors.on_secondary.default.hex}};
+}
+
+/*
+ * -------------------------------------------------------------------
+ * Workspaces Module
+ *
+ * Styles for the workspace indicator, the bar's primary focus.
+ * -------------------------------------------------------------------
+ */
+#window {
+    background-color: {{colors.secondary_fixed_dim.default.hex}};
+    color: {{colors.on_secondary.default.hex}};
+    padding: 0 10px;
+}
+
+#workspaces {
+    background-color: {{colors.surface.default.hex}};
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: {{colors.on_surface_variant.default.hex}}; /* Inactive workspaces are less prominent */
+}
+
+#workspaces button:hover {
+    box-shadow: inset 0 -3px transparent;
+    background: {{colors.surface_container_low.default.hex}};
+}
+
+#workspaces button.focused {
+    background-color: {{colors.secondary_container.default.hex}};
+    color: {{colors.on_secondary_container.default.hex}};
+    box-shadow: inset 0 -2px {{colors.primary.default.hex}}; /* Use Primary color as the main indicator */
+}
+
+#workspaces button.urgent {
+    background-color: {{colors.error_container.default.hex}};
+    color: {{colors.on_error_container.default.hex}};
+}
+
+/*
+ * -------------------------------------------------------------------
+ * Module States
+ *
+ * Colors are used here to convey information about module status.
+ * -------------------------------------------------------------------
+ */
+
+/* --- Battery Module --- */
+#battery.charging,
+#battery.plugged {
+    background-color: {{colors.tertiary_container.default.hex}};
+    color: {{colors.on_tertiary_container.default.hex}};
+}
+
+#battery.critical:not(.charging) {
+    background-color: {{colors.error.default.hex}};
+    color: {{colors.on_error.default.hex}};
+    animation: blink 1s steps(1, end) infinite;
+}
+
+/* --- Power Profiles Module --- */
+#power-profiles-daemon.performance {
+    background-color: {{colors.primary_container.default.hex}};
+    color: {{colors.on_primary_container.default.hex}};
+}
+#power-profiles-daemon.power-saver {
+    background-color: {{colors.tertiary_container.default.hex}};
+    color: {{colors.on_tertiary_container.default.hex}};
+}
+
+/* --- Muted / Disabled States --- */
+#pulseaudio.muted,
+#wireplumber.muted {
+    background-color: {{colors.surface_container_highest.default.hex}};
+    color: {{colors.on_surface_variant.default.hex}};
+}
+
+/* --- Critical / Error States --- */
+#network.disconnected,
+#temperature.critical {
+    background-color: {{colors.error_container.default.hex}};
+    color: {{colors.on_error_container.default.hex}};
+}
+#tray > .needs-attention {
+    background-color: {{colors.error.default.hex}};
+}
+
+/* --- Special Activated States --- */
+#idle_inhibitor.activated {
+    background-color: {{colors.inverse_surface.default.hex}};
+    color: {{colors.inverse_on_surface.default.hex}};
+}
+
+/*
+ * -------------------------------------------------------------------
+ * Animation for Critical States
+ * -------------------------------------------------------------------
+ */
+@keyframes blink {
+    to {
+        background-color: {{colors.on_error.default.hex}};
+        color: {{colors.error.default.hex}};
+    }
+}

@@ -21,9 +21,17 @@ output_path = "~/.config/hypr/land/colors.conf"
 input_path = "templates/hypr/hyprlock.conf"
 output_path = "~/.config/hypr/hyprlock.conf"
 
+[templates.niri]
+input_path = "templates/niri/layout.kdl"
+output_path = "~/.config/niri/conf.d/layout.kdl"
+
 [templates.rofi]
 input_path = "templates/rofi/material.rasi"
 output_path = "~/.config/rofi/themes/material.rasi"
+
+[templates.waybar]
+input_path = "templates/waybar/style.css"
+output_path = "~/.config/waybar/style.css"
 
 [templates.wezterm]
 input_path = "templates/wezterm/colors.lua.template"
