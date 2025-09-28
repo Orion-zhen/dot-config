@@ -7,6 +7,10 @@ function module.apply(config)
     local is_kde = os.getenv("KDE_FULL_SESSION") == "true"
     local use_minimal = is_hyprland or is_niri or is_kde
 
+    -- 默认窗口大小
+    config.initial_rows = 32
+    config.initial_cols = 128
+
     -- 标签栏配置
     config.enable_tab_bar = true
     -- 样式
