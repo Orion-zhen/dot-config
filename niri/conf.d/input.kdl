@@ -1,0 +1,57 @@
+// 配置输入设备
+// 所有可选项:
+// https://yalter.github.io/niri/Configuration:-Input
+input {
+    // 键盘设置
+    keyboard {
+        xkb {}
+
+        // 默认启用数字小键盘
+        numlock
+    }
+
+    // 触控板设置
+    touchpad {
+        // off // 关闭该设备
+        tap // 轻触为点击
+        // dwt
+        // dwtp
+        drag true // 启用拖拽
+        drag-lock // 拖拽锁定
+        natural-scroll // 自然滚动
+        accel-speed 0.2 // 滚动加速
+        accel-profile "adaptive" // 加速策略, 可选 adaptive, flat
+        scroll-method "two-finger" // 双指滑动
+        // disabled-on-external-mouse
+        middle-emulation // 通过同时按下左右键来模拟中键
+    }
+
+    mouse {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "no-scroll"
+    }
+
+    trackpoint {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "on-button-down"
+        // scroll-button 273
+        // scroll-button-lock
+        // middle-emulation
+    }
+
+    // 使鼠标自动移动到用户新选中的窗口中心
+    warp-mouse-to-focus mode="center-xy"
+
+    // 焦点窗口跟随鼠标
+    // 设置 max-scroll-amount="0%" 使其仅对全部展示在屏幕中的窗口生效
+    focus-follows-mouse max-scroll-amount="0%"
+
+    // 通过索引两次切换到同一个工作空间将会使系统切换回之前的工作空间
+    workspace-auto-back-and-forth
+}

@@ -1,0 +1,157 @@
+binds {
+    // 按键的组成包括由 + 号分隔的修饰符，以及位于末尾的 XKB 键名. 如果你需要查找某个特定按键的 XKB 键名, 可以使用像 wev 这样的程序
+    // "Mod" 是一个特殊的键位符, 在 TTY 中与 Super 等价, 在 winit 窗口中与 Alt 等价
+    // 这里可以绑定的绝大部分操作, 都可以在命令行通过
+    // `niri msg action do-something`
+    // 来执行
+
+    // Mod-Shift-/ = Mod-?,
+    // 展示一系列重要的快捷键列表
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // 基础
+    // 退出 Niri
+    Mod+Shift+Q { quit; }
+    Ctrl+Alt+Delete { quit; }
+    // 关闭显示器, 通过任意操作来重启显示器
+    Mod+Shift+E hotkey-overlay-title="Turn off all monitors" { power-off-monitors; }
+    // 关闭窗口
+    Mod+Q repeat=false { close-window; }
+
+    // 最大化窗口
+    Mod+M { maximize-column; }
+    // 在不重叠的情况下尽可能最大化窗口
+    Mod+Shift+M { expand-column-to-available-width; }
+    // 全屏显示窗口
+    Mod+F { fullscreen-window; }
+
+    // 在预设列宽度之间切换
+    Mod+W { switch-preset-column-width; }
+    // Mod +/- 增减列宽
+    Mod+Minus { set-column-width "-5%"; }
+    Mod+Equal { set-column-width "+5%"; }
+    // Mod Shift +/- 改变窗口高度
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // 浮动窗口
+    Mod+Space       { toggle-window-floating; }
+    Mod+Shift+Space { switch-focus-between-floating-and-tiling; }
+
+    // 锁屏
+    Mod+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
+
+    // 屏幕截图
+    Print { spawn "hyprshot-gui"; }
+    Mod+X { spawn "hyprshot-gui"; }
+
+    // 剪切板管理
+    // Mod+V { spawn-sh "nwg-clipman -w"; }
+    Mod+V { spawn-sh "wezterm start --class clipse clipse"; }
+
+    // 快捷启动
+    Mod+T hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm"; }
+    Mod+R hotkey-overlay-title="Run an Application: sherlock" { spawn "sherlock"; }
+    Mod+C hotkey-overlay-title="Open a code editor: VS Code" { spawn "code"; }
+    Mod+B hotkey-overlay-title="Open a browser: Zen" { spawn "zen"; }
+    Mod+E hotkey-overlay-title="Open a file manager: Nautilus" { spawn "nautilus"; }
+
+    // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
+    // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
+    // For example, this is a standard bind to toggle the screen reader (orca).
+    Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+
+    // 固定键位
+    // 音量
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "pamixer -i 5"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "pamixer -d 5"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "pamixer -t"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "pamixer --default-source -m"; }
+    // 亮度
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+
+    // Mod + ` 切换总览模式, 也可以通过鼠标移动到左上角或触控板四指滑动
+    Mod+grave repeat=false { toggle-overview; }
+
+    // 切换焦点窗口/显示器/工作区
+    Mod+Left  { focus-column-or-monitor-left; }
+    Mod+Right { focus-column-or-monitor-right; }
+    Mod+Up    { focus-window-or-workspace-up; }
+    Mod+Down  { focus-window-or-workspace-down; }
+    // 鼠标滚轮
+    Mod+WheelScrollLeft  { focus-column-or-monitor-left; }
+    Mod+WheelScrollRight { focus-column-or-monitor-right; }
+    Mod+WheelScrollUp   cooldown-ms=150 { focus-window-or-workspace-up; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-window-or-workspace-down; }
+
+    // alt+tab 切换窗口
+    Alt+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
+    Alt+Shift+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
+    Alt+Grave repeat=false { spawn "niriswitcherctl" "show" "--workspace"; }
+    Alt+Shift+Grave repeat=false { spawn "niriswitcherctl" "show" "--workspace"; }
+
+    // 移动窗口/显示器/工作区
+    Mod+Shift+Left  { move-column-left-or-to-monitor-left; }
+    Mod+Shift+Right { move-column-right-or-to-monitor-right; }
+    Mod+Shift+Up    { move-window-up-or-to-workspace-up; }
+    Mod+Shift+Down  { move-window-down-or-to-workspace-down; }
+    // 鼠标滚轮
+    Mod+Shift+WheelScrollLeft  { move-column-left-or-to-monitor-left; }
+    Mod+Shift+WheelScrollRight { move-column-right-or-to-monitor-right; }
+    Mod+Shift+WheelScrollUp   cooldown-ms=150 { move-window-up-or-to-workspace-up; }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { move-window-down-or-to-workspace-down; }
+
+    // 切换到最远端的列
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    // 移动到最远端的列
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+End  { move-column-to-last; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+0 { move-column-to-workspace 10; }
+
+    // 切换当前和上一个工作区
+    Mod+Tab { focus-workspace-previous; }
+
+    // 自动切换 column 窗口
+    Mod+Comma  { consume-or-expel-window-left; }
+    Mod+Period { consume-or-expel-window-right; }
+
+    // Actions to switch layouts.
+    // Note: if you uncomment these, make sure you do NOT have
+    // a matching layout switch hotkey configured in xkb options above.
+    // Having both at once on the same hotkey will break the switching,
+    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+    // Mod+Space       { switch-layout "next"; }
+    // Mod+Shift+Space { switch-layout "prev"; }
+
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}

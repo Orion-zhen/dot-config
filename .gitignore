@@ -43,6 +43,12 @@ hypr/land/monitors.conf
 !matugen
 !matugen/**
 
+!niri
+!niri/compose.sh
+!niri/conf.d
+!niri/conf.d/**
+niri/conf.d/outputs.kdl
+
 !nvim/
 !nvim/**
 nvim/lazy-lock.json

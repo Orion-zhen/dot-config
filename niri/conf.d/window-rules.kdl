@@ -1,0 +1,72 @@
+// 使用命令
+// niri msg windows
+// 查看所有的窗口
+
+// 窗口圆角
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    // default-column-width {}
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    match title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match title="ark"
+    match title="^(.*blueberry.*)$"
+    match title="^(.*polkit.*)$"
+    match app-id="Pinentry-gtk"
+    match title="^(.*Hyprshot.*)$"
+    match title="^(.*Fcitx.*)$"
+
+    open-floating true
+    open-focused true
+}
+
+// 剪切板
+window-rule {
+    match app-id="nwg-clipman"
+    open-floating true
+    open-focused true
+
+    default-floating-position x=0 y=100 relative-to="bottom"
+    default-window-height { proportion 0.3333; }
+    default-column-width  { proportion 0.3333; }
+}
+window-rule {
+    match app-id="clipse"
+    open-floating true
+}
+
+// 对话窗口
+window-rule {
+    match title="^(Open File.*)$"
+    match title="^(打开文件.*)$"
+    match title="^(Select a File.*)$"
+    match title="^(选择文件.*)$"
+    match title="^(Choose wallpaper.*)$"
+    match title="^(选择壁纸.*)$"
+    match title="^(Open Folder.*)$"
+    match title="^(打开文件夹.*)$"
+    match title="^(Save As.*)$"
+    match title="^(保存为.*)$"
+    match title="^(Library.*)$"
+    match title="^(File Upload.*)$"
+    match title="^(上传文件.*)$"
+
+    open-floating true
+    open-focused true
+}

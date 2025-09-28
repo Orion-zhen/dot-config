@@ -1,0 +1,26 @@
+// 壁纸
+spawn-at-startup "hyprpaper"
+
+spawn-sh-at-startup "waybar"
+
+// fcitx5 输入法
+spawn-sh-at-startup "fcitx5 -d --replace"
+
+// 剪切板
+// spawn-sh-at-startup "wl-paste --type text --watch cliphist store"
+// spawn-sh-at-startup "wl-paste --type image --watch cliphist store"
+// clipse-git
+spawn-sh-at-startup "clipse -listen"
+
+// 磁盘自动挂载
+spawn-sh-at-startup "udiskie"
+
+// polkit
+spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
+// spawn-sh-at-startup "systemctl --user start hyprpolkitagent"
+
+// xwayland-satellite
+spawn-at-startup "xwayland-satellite"
+
+// niriswitcher
+spawn-sh-at-startup "niriswitcher"
