@@ -1,107 +1,155 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: "Hack Nerd Font", "Font Awesome";
-    /* font-weight: 500; */
+    font-family: Maple Mono NF, Hack Nerd Font;
     font-size: 20px;
-
-    color: #ffffff;
-
-    border-radius: 10px;
-    text-shadow: none;
-    
-    transition-property: background;
-    transition-duration: 0.2s;
-
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-/* module groups */
-.modules-left {
-    background-color: transparent;
-    margin: 2px 0 0 4px;
-}
-.modules-right {
-    background-color: transparent;
-    margin: 2px 0 0 4px;
-}
-.modules-center {
-    background-color: transparent;
-    margin: 2px 0 0 4px;
-}
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > * {
-    margin-left: 4px;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > * {
-    margin-right: 4px;
-}
-
-#window {
-    font-weight: 400;
-    background-color: rgba(0,119,179,0.6);
-    padding: 0 12px;
+    border: none;
+    border-radius: 10;
 }
 
 window#waybar {
-    background-color: transparent;
-}
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-#workspaces {
-	background: rgba(0, 43, 51, 0.85);
-	transition: none;
+    background: transparent;
+    color: #e4e1e9;
+    transition-property: background-color;
+    transition-duration: 0.5s;
 }
 
-#workspaces button {
-    border: none;
-    padding: 2 16px;
-    background-color: transparent;
+button {
+    box-shadow: inset 0 -3px transparent;
 }
 
-#workspaces button:hover {
-    background: rgba(0,153,153,1);
+button:hover {
+    background: #1b1b21; /* Use a state layer for hover */
 }
 
-#workspaces button.active {
-    background: rgba(0,119,179,0.6);
+.modules-left {
+    margin-left: 8px;
+}
+.modules-right {
+    margin-right: 8px;
 }
 
-#workspaces button.active:hover {
-    background: rgba(0,153,153,1);
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
-#mode {
-    background-color: #cc3436;
-    font-weight: bold;
-    border-bottom: 3px solid #ffffff;
-}
-
-/* modules default */
+/* Reset all modules to have a unified background */
 #clock,
+#battery,
 #cpu,
 #memory,
 #disk,
+#temperature,
+#backlight,
 #network,
 #pulseaudio,
+#wireplumber,
+#custom-media,
 #tray,
 #mode,
-#backlight,
-#temperature,
-#battery,
-#bluetooth,
-#custom-launcher,
-#taskbar,
-#keyboard-state,
-#power-profiles-daemon {
-    padding: 0 12px;
-    background-color: rgba(0, 43, 51, 0.85);
+#idle_inhibitor,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 10px;
+    background: #c3c5dd;
+    color: #2c2f42;
+}
+
+/*
+ * -------------------------------------------------------------------
+ * Workspaces Module
+ *
+ * Styles for the workspace indicator, the bar's primary focus.
+ * -------------------------------------------------------------------
+ */
+#window {
+    background-color: #c3c5dd;
+    color: #2c2f42;
+    padding: 0 10px;
+}
+
+#workspaces {
+    background-color: #121318;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: #c6c5d0; /* Inactive workspaces are less prominent */
+}
+
+#workspaces button:hover {
+    box-shadow: inset 0 -3px transparent;
+    background: #1b1b21;
+}
+
+#workspaces button.focused {
+    background-color: #434659;
+    color: #dfe1f9;
+    box-shadow: inset 0 -2px #bac3ff; /* Use Primary color as the main indicator */
+}
+
+#workspaces button.urgent {
+    background-color: #93000a;
+    color: #ffdad6;
+}
+
+/*
+ * -------------------------------------------------------------------
+ * Module States
+ *
+ * Colors are used here to convey information about module status.
+ * -------------------------------------------------------------------
+ */
+
+/* --- Battery Module --- */
+#battery.charging,
+#battery.plugged {
+    background-color: #5d3c55;
+    color: #ffd7f1;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #ffb4ab;
+    color: #690005;
+    animation: blink 1s steps(1, end) infinite;
+}
+
+/* --- Power Profiles Module --- */
+#power-profiles-daemon.performance {
+    background-color: #394379;
+    color: #dee0ff;
+}
+#power-profiles-daemon.power-saver {
+    background-color: #5d3c55;
+    color: #ffd7f1;
+}
+
+/* --- Muted / Disabled States --- */
+#pulseaudio.muted,
+#wireplumber.muted {
+    background-color: #34343a;
+    color: #c6c5d0;
+}
+
+/* --- Critical / Error States --- */
+#network.disconnected,
+#temperature.critical {
+    background-color: #93000a;
+    color: #ffdad6;
+}
+#tray > .needs-attention {
+    background-color: #ffb4ab;
+}
+
+/* --- Special Activated States --- */
+#idle_inhibitor.activated {
+    background-color: #e4e1e9;
+    color: #303036;
+}
+
+/*
+ * -------------------------------------------------------------------
+ * Animation for Critical States
+ * -------------------------------------------------------------------
+ */
+@keyframes blink {
+    to {
+        background-color: #690005;
+        color: #ffb4ab;
+    }
 }
