@@ -3,13 +3,16 @@ local module = {}
 function module.apply(config)
     -- 检测 hyprland 环境
     local is_hyprland = os.getenv("HYPRLAND_INSTANCE_SIGNATURE") ~= nil
+    local is_niri = os.getenv("NIRI_SOCKET") ~= nil
+    local is_kde = os.getenv("KDE_FULL_SESSION") == "true"
+    local use_minimal = is_hyprland or is_niri or is_kde
 
     -- 标签栏配置
     config.enable_tab_bar = true
     -- 样式
     config.use_fancy_tab_bar = true
     -- 仅有一个标签页时关闭标签栏
-    if is_hyprland then
+    if use_minimal then
         config.hide_tab_bar_if_only_one_tab = true
     end
     -- 标签栏置底
@@ -31,10 +34,16 @@ function module.apply(config)
     }
 
     -- 背景不透明度
-    config.window_background_opacity = 0.4
+    if is_hyprland then
+        config.window_background_opacity = 0.4
+    elseif is_niri then
+        config.window_background_opacity = 0.9
+    elseif is_kde then
+        config.window_background_opacity = 0.2
+        config.kde_window_background_blur = true
+    end
     -- 背景模糊
     config.macos_window_background_blur = 32
-    config.kde_window_background_blur = true
 
     -- 窗口栏设置
     -- RESIZE: 可调整大小
@@ -42,7 +51,7 @@ function module.apply(config)
     -- NONE: 啥都没有
     -- MACOS_FORCE_ENABLE_SHADOW: 启用阴影效果
     -- INTEGRATED_BUTTONS: 将窗口管理按钮内嵌到标签栏中
-    if is_hyprland then
+    if use_minimal then
         config.window_decorations = "NONE"
     else
         config.window_decorations = "RESIZE | MACOS_FORCE_ENABLE_SHADOW | INTEGRATED_BUTTONS"
