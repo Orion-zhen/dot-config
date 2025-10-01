@@ -55,7 +55,7 @@ else if type -q pkg
 else if type -q brew
     abbr install "brew install"
     abbr remove "brew uninstall --force"
-    abbr update "brew update && brew upgrade"
+    abbr update "brew update && brew upgrade && brew upgrade --cask --greedy"
 else if type -q apt
     abbr update "sudo apt update && sudo apt upgrade"
     abbr autoremove "sudo apt autoremove"
