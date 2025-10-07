@@ -13,6 +13,7 @@ cm = commit -m
 cms = commit -S -m
 co = checkout
 lg = log --oneline --graph --decorate --all
+sign = config --local commit.gpgsign true
 st = status
 
 [branch]
