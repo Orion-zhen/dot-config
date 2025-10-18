@@ -24,3 +24,6 @@ spawn-at-startup "xwayland-satellite"
 
 // niriswitcher
 spawn-sh-at-startup "niriswitcher"
+
+// vicinae
+spawn-sh-at-startup "vicinae server"
