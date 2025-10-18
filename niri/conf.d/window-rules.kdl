@@ -8,6 +8,27 @@ window-rule {
     clip-to-geometry true
 }
 
+// 聊天软件集中到特定工作区
+window-rule {
+    match app-id="QQ"
+    match app-id="wechat"
+    match app-id="wemeetapp"
+
+    open-on-workspace "chat" // 配置在 workspaces.kdl 中
+    open-focused true // 焦点到该窗口
+}
+
+// 浏览器默认宽度 75%
+window-rule {
+    match app-id="zen-browser"
+    match app-id="firefox"
+    match app-id="chromium"
+
+    default-column-width {
+        proportion 0.75
+    }
+}
+
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
 window-rule {

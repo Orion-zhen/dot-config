@@ -1,0 +1,6 @@
+// 命名工作区
+// 将会按照配置文件中的顺序显示工作区
+
+workspace "chat" {
+    open-on-output "DP-2"
+}
