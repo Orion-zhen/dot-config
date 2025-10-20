@@ -41,9 +41,13 @@ binds {
     // 锁屏
     Mod+L hotkey-overlay-title="锁定屏幕" { spawn "hyprlock"; }
 
+    // 通知中心 by dms-shell-niri
+    Mod+N hotkey-overlay-title="打开通知中心" { spawn-sh "dms ipc call notifications toggle"; }
+
     // 屏幕截图
     Print { spawn "hyprshot-gui"; }
     Mod+X hotkey-overlay-title="屏幕截图" { spawn "hyprshot-gui"; }
+    Mod+Shift+S { spawn "hyprshot-gui"; }
 
     // 剪切板管理
     // Mod+V { spawn-sh "nwg-clipman -w"; }

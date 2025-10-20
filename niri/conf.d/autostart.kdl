@@ -1,7 +1,8 @@
 // 壁纸
 spawn-at-startup "hyprpaper"
 
-spawn-sh-at-startup "waybar"
+// spawn-sh-at-startup "waybar"
+spawn-sh-at-startup "dms run"
 
 // fcitx5 输入法
 spawn-sh-at-startup "fcitx5 -d --replace"
