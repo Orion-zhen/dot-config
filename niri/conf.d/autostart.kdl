@@ -1,5 +1,5 @@
 // 壁纸
-spawn-at-startup "hyprpaper"
+// spawn-at-startup "hyprpaper"
 
 // spawn-sh-at-startup "waybar"
 spawn-sh-at-startup "dms run"
