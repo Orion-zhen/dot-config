@@ -44,9 +44,7 @@ hypr/land/monitors.conf
 !matugen/**
 
 !niri
-!niri/compose.sh
-!niri/conf.d
-!niri/conf.d/**
+!niri/**
 niri/conf.d/outputs.kdl
 
 !nvim/
