@@ -14,8 +14,8 @@ function venv --description "activate python venv"
         end
         set current_dir (dirname $current_dir)
     end
-    if test $found -eq 0 -a -r "$HOME/$venv_dir/bin/activate"
-        source "$HOME/$venv_dir/bin/activate.fish"
+    if test -r "$current_dir/$venv_dir/bin/activate.fish"
+        echo "Activated python venv in $current_dir/$venv_dir"
     else
         echo "No python venv found"
     end

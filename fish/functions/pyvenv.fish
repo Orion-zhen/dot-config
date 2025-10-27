@@ -8,5 +8,5 @@ function pyvenv --description "create a new pyvenv"
         return 1
     end
     python -m venv $venv_dir
-    act $venv_dir
+    source $venv_dir/bin/activate.fish
 end
