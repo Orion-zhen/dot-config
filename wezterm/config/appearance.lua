@@ -1,3 +1,4 @@
+local wezterm = require("wezterm")
 local module = {}
 
 function module.apply(config)
@@ -6,6 +7,8 @@ function module.apply(config)
     local is_niri = os.getenv("NIRI_SOCKET") ~= nil
     local is_kde = os.getenv("KDE_FULL_SESSION") == "true"
     local use_minimal = is_hyprland or is_niri or is_kde
+
+    local is_macos = (wezterm.target_triple == "aarch64-apple-darwin")
 
     -- 默认窗口大小
     config.initial_rows = 32
@@ -45,9 +48,11 @@ function module.apply(config)
     elseif is_kde then
         config.window_background_opacity = 0.2
         config.kde_window_background_blur = true
+    elseif is_macos then
+        -- 背景模糊
+        config.macos_window_background_blur = 24
+        config.window_background_opacity = 0.6
     end
-    -- 背景模糊
-    config.macos_window_background_blur = 32
 
     -- 窗口栏设置
     -- RESIZE: 可调整大小
@@ -57,7 +62,7 @@ function module.apply(config)
     -- INTEGRATED_BUTTONS: 将窗口管理按钮内嵌到标签栏中
     if use_minimal then
         config.window_decorations = "NONE"
-    else
+    elseif is_macos then
         config.window_decorations = "RESIZE | MACOS_FORCE_ENABLE_SHADOW | INTEGRATED_BUTTONS"
     end
 
