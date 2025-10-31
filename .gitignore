@@ -45,6 +45,7 @@ hypr/land/monitors.conf
 
 !niri
 !niri/**
+niri/dms
 niri/conf.d/outputs.kdl
 
 !nvim/
