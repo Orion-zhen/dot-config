@@ -7,6 +7,13 @@ if test -d /opt/cuda
     set -gx PATH $PATH /opt/cuda/bin
 end
 
+# for debian series
+if test -d /usr/local/cuda
+    set -gx CUDA_HOME /usr/local/cuda
+    set -gx PATH $PATH /usr/local/cuda/bin
+    set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/cuda/lib64
+end
+
 if test -d /opt/rocm
     set -gx PATH $PATH /opt/rocm/bin
 end
