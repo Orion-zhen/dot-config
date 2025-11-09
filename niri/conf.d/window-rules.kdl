@@ -71,6 +71,9 @@ window-rule {
 window-rule {
     match app-id="clipse"
     open-floating true
+    // default-window-height { proportion 0.3333; }
+    // default-column-width  { proportion 0.3333; }
+    opacity 1.0
 }
 
 // 对话窗口
