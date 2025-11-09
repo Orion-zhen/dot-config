@@ -36,6 +36,8 @@ hypr/land/monitors.conf
 
 !kitty/
 !kitty/**
+kitty/dank-tabs.conf
+kitty/dank-theme.conf
 
 !mako/
 !mako/**
