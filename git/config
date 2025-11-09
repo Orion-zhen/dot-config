@@ -13,8 +13,10 @@ cm = commit -m
 cms = commit -S -m
 co = checkout
 lg = log --oneline --graph --decorate --all
+proxy = config --global url."https://xget.xi-xu.me/gh/".insteadOf "https://github.com/" # 来自 Xget 的镜像
 sign = config --local commit.gpgsign true
 st = status
+unproxy = config --global --unset url."https://xget.xi-xu.me/gh/".insteadOf
 
 [branch]
 # 按最近提交排序分支
