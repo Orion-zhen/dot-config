@@ -27,4 +27,4 @@ spawn-at-startup "xwayland-satellite"
 spawn-sh-at-startup "niriswitcher"
 
 // vicinae
-spawn-sh-at-startup "USE_LAYER_SHELL=0 vicinae server"
+spawn-sh-at-startup "vicinae server"
