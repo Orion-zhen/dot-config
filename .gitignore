@@ -18,6 +18,9 @@
 !clipse/config.json
 !clipse/custom_theme.json
 
+!containers/
+!containers/**
+
 !fish/
 !fish/**
 
