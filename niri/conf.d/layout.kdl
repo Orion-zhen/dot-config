@@ -39,6 +39,7 @@ layout {
 
     // 窗口边框
     border {
+        on
         // 宽度(像素)
         width 2
 
