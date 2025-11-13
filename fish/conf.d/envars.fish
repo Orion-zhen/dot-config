@@ -20,8 +20,10 @@ if test -d $HOME/.cert
     set -gx SSL_HOME $HOME/.cert
 end
 
-if test -d $HOME/ai/Models
-    set -gx MODELS $HOME/ai/Models
+if test -d $HOME/models
+    set -gx MODELS $HOME/models
+else
+    set -gx MODELS $HOME
 end
 
 set -gx GPG_TTY $(tty)
