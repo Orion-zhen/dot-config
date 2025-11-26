@@ -23,16 +23,16 @@ function module.apply(config)
             action = act.CloseCurrentTab({ confirm = false })
         },
 
-        -- ALT + 方向键 移动光标
+        -- CTRL + 方向键 移动光标
         -- macOS: Option + 方向键
         {
-            mods = "ALT",
+            mods = "CTRL",
             key = "LeftArrow",
             -- 移动到开头
             action = act.SendString("\u{1b}OH")
         },
         {
-            mods = "ALT",
+            mods = "CTRL",
             key = "RightArrow",
             -- 移动到末尾
             action = act.SendString("\u{1b}OF")
