@@ -1,5 +1,6 @@
 {
     "closeOnFocusLoss": false,
+    "considerPreedit": true,
     "faviconService": "twenty",
     "font": {
         "size": 12
