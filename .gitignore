@@ -84,6 +84,7 @@ nvim/lazyvim.json
 
 !wezterm/
 !wezterm/**
+wezterm/colors/dank-theme.toml
 
 !wlogout/
 !wlogout/**
