@@ -79,8 +79,9 @@ binds {
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
-    // Mod + ` 切换总览模式, 也可以通过鼠标移动到左上角或触控板四指滑动
-    Mod+grave repeat=false hotkey-overlay-title="打开总览模式" { toggle-overview; }
+    // 切换总览模式, 也可以通过鼠标移动到左上角或触控板四指滑动
+    Mod+O repeat=false hotkey-overlay-title="打开总览模式" { toggle-overview; }
+    Mod+D repeat=false hotkey-overlay-title="打开总览模式" { toggle-overview; }
 
     // 切换焦点窗口/显示器/工作区
     Mod+Left  { focus-column-or-monitor-left; }
