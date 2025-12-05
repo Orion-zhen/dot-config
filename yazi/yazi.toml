@@ -1,0 +1,31 @@
+[mgr]
+# 面板比例
+ratio = [1, 4, 3]
+# 文件排序方式
+sort_by = "natural"
+sort_sensitive = true
+sort_reverse = false
+sort_dir_first = true
+sort_translit = true
+
+# 显示文件信息
+linemode = "size_and_mtime"
+show_hidden = true
+show_symlink = true
+
+# 预览界面
+[preview]
+# 代码自动折行
+wrap = "yes"
+# tab宽度
+tab_size = 2
+
+# 图片预览
+image_filter = "catmull-rom"
+image_quality = 75
+
+[input]
+cursor_blink = true
+
+[confirm]
+delete = true

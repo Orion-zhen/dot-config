@@ -91,3 +91,6 @@ wezterm/colors/dank-theme.toml
 
 !xdg-desktop-portal/
 !xdg-desktop-portal/**
+
+!yazi/
+!yazi/**
