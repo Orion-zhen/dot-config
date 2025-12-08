@@ -45,9 +45,9 @@ binds {
     Mod+N hotkey-overlay-title="打开通知中心" { spawn-sh "dms ipc call notifications toggle"; }
 
     // 屏幕截图
-    Print { spawn "hyprshot-gui"; }
-    Mod+X hotkey-overlay-title="屏幕截图" { spawn "hyprshot-gui"; }
-    Mod+Shift+S { spawn "hyprshot-gui"; }
+    Print { screenshot show-pointer=false; }
+    Mod+X hotkey-overlay-title="屏幕截图" { screenshot show-pointer=false; }
+    Mod+Shift+S { screenshot show-pointer=false; }
 
     // 剪切板管理
     // Mod+V { spawn-sh "nwg-clipman -w"; }
@@ -76,7 +76,7 @@ binds {
     XF86AudioMute        allow-when-locked=true { spawn-sh "pamixer -t"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "pamixer --default-source -m"; }
     // 亮度
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    XF86MonBrightnessUp allow-when-locked=true   { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
     // 切换总览模式, 也可以通过鼠标移动到左上角或触控板四指滑动
@@ -84,10 +84,12 @@ binds {
     Mod+D repeat=false hotkey-overlay-title="打开总览模式" { toggle-overview; }
 
     // 切换焦点窗口/显示器/工作区
-    Mod+Left  { focus-column-or-monitor-left; }
-    Mod+Right { focus-column-or-monitor-right; }
-    Mod+Up    { focus-window-or-workspace-up; }
-    Mod+Down  { focus-window-or-workspace-down; }
+    Mod+Left       { focus-column-or-monitor-left; }
+    Mod+Ctrl+Left  { focus-column-first; }
+    Mod+Right      { focus-column-or-monitor-right; }
+    Mod+Ctrl+Right { focus-column-last; }
+    Mod+Up         { focus-window-or-workspace-up; }
+    Mod+Down       { focus-window-or-workspace-down; }
     // 鼠标滚轮
     Mod+WheelScrollLeft  { focus-column-or-monitor-left; }
     Mod+WheelScrollRight { focus-column-or-monitor-right; }
@@ -95,16 +97,18 @@ binds {
     Mod+WheelScrollDown cooldown-ms=150 { focus-window-or-workspace-down; }
 
     // alt+tab 切换窗口
-    Alt+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
-    Alt+Shift+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
-    Alt+Grave repeat=false { spawn "niriswitcherctl" "show" "--workspace"; }
-    Alt+Shift+Grave repeat=false { spawn "niriswitcherctl" "show" "--workspace"; }
+    // Alt+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
+    // Alt+Shift+Tab repeat=false { spawn "niriswitcherctl" "show" "--window"; }
+    // Alt+Grave repeat=false { spawn "niriswitcherctl" "show" "--workspace"; }
+    // Alt+Shift+Grave repeat=false { spawn "niriswitcherctl" "show" "--workspace"; }
 
     // 移动窗口/显示器/工作区
-    Mod+Shift+Left  { move-column-left-or-to-monitor-left; }
-    Mod+Shift+Right { move-column-right-or-to-monitor-right; }
-    Mod+Shift+Up    { move-window-up-or-to-workspace-up; }
-    Mod+Shift+Down  { move-window-down-or-to-workspace-down; }
+    Mod+Shift+Left       { move-column-left-or-to-monitor-left; }
+    Mod+Shift+Ctrl+Left  { move-column-to-first; }
+    Mod+Shift+Right      { move-column-right-or-to-monitor-right; }
+    Mod+Shift+Ctrl+Right { move-column-to-last; }
+    Mod+Shift+Up         { move-window-up-or-to-workspace-up; }
+    Mod+Shift+Down       { move-window-down-or-to-workspace-down; }
     // 鼠标滚轮
     Mod+Shift+WheelScrollLeft  { move-column-left-or-to-monitor-left; }
     Mod+Shift+WheelScrollRight { move-column-right-or-to-monitor-right; }

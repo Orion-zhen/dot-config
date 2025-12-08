@@ -1,5 +1,7 @@
 prefer-no-csd
 
+screenshot-path "~/Pictures/screenshots/%Y-%m/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
 overview {
     zoom 0.5
 }
