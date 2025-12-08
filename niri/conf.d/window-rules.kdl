@@ -30,6 +30,23 @@ window-rule {
     }
 }
 
+// Xephyr 套壳 WPS
+window-rule {
+    match app-id="Xephyr"
+
+    open-maximized true
+}
+
+window-rule {
+    match app-id="XEyes"
+
+    open-floating true
+    open-focused  false
+
+    default-window-height { proportion 0.05; }
+    default-column-width  { proportion 0.05; }
+}
+
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
 window-rule {
@@ -55,14 +72,14 @@ window-rule {
     match title="^(.*Fcitx.*)$"
 
     open-floating true
-    open-focused true
+    open-focused  true
 }
 
 // 剪切板
 window-rule {
     match app-id="nwg-clipman"
     open-floating true
-    open-focused true
+    open-focused  true
 
     default-floating-position x=0 y=100 relative-to="bottom"
     default-window-height { proportion 0.3333; }
@@ -93,5 +110,5 @@ window-rule {
     match title="^(上传文件.*)$"
 
     open-floating true
-    open-focused true
+    open-focused  true
 }
