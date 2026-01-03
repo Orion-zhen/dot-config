@@ -23,6 +23,7 @@
 
 !fish/
 !fish/**
+fish/fish_variables
 
 !git/
 !git/config
