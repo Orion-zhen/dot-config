@@ -64,7 +64,7 @@ else if type -q apt
 end
 
 # kitty 终端下特殊的 ssh 别名
-if test $TERM = xterm-kitty
+if set -q TERM; and string match -q "xterm-kitty" "$TERM"
     abbr ssh "kitten ssh"
 end
 
