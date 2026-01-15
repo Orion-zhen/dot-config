@@ -24,6 +24,7 @@
 !fish/
 !fish/**
 fish/fish_variables
+fish/conf.d/custom.fish
 
 !git/
 !git/config
