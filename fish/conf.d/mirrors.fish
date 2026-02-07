@@ -2,8 +2,8 @@
 if test (date +%Z) = CST
     # 镜像来自 Xget 项目: https://github.com/xixu-me/Xget
     set -gx HF_ENDPOINT "https://hf-mirror.com"
-    set -gx PUB_HOSTED_URL "https://mirrors.cernet.edu.cn/dart-pub"
-    set -gx FLUTTER_STORAGE_BASE_URL "https://mirrors.cernet.edu.cn/flutter"
+    set -gx PUB_HOSTED_URL https://pub.flutter-io.cn
+    set -gx FLUTTER_STORAGE_BASE_URL https://storage.flutter-io.cn
     set -gx NODE_MIRROR "https://mirrors.cernet.edu.cn/nodejs-release"
     set -gx NVM_NODEJS_ORG_MIRROR "https://mirrors.cernet.edu.cn/nodejs-release"
     set -gx RUSTUP_UPDATE_ROOT "https://mirrors.cernet.edu.cn/rustup/rustup"
