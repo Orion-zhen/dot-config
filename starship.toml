@@ -126,7 +126,7 @@ symbol = " "
 
 # 上一个命令执行时间
 [cmd_duration]
-format = '\[[ $duration]($style)\]'
+format = '\[[$duration]($style)\]'
 style = "yellow bold"
 show_milliseconds = true
 show_notifications = true
