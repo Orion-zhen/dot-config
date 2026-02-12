@@ -35,6 +35,10 @@ if type -q zoxide
     abbr cd z
 end
 
+if type -q witr
+    abbr why witr
+end
+
 if type -q tmux
     abbr tls "tmux ls"
     abbr tat "tmux attach -t"
