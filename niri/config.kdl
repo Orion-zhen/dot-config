@@ -1,3 +1,4 @@
+include "conf.d/animations.kdl"
 include "conf.d/autostart.kdl"
 include "conf.d/env.kdl"
 include "conf.d/input.kdl"
