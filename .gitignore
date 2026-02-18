@@ -97,3 +97,6 @@ wezterm/colors/dank-theme.toml
 
 !yazi/
 !yazi/**
+
+**/*dank*
+**/*dms*
