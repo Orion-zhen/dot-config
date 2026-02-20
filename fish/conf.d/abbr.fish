@@ -39,6 +39,10 @@ if type -q witr
     abbr why witr
 end
 
+if type -q opencode
+    abbr oc opencode
+end
+
 if type -q tmux
     abbr tls "tmux ls"
     abbr tat "tmux attach -t"

@@ -55,8 +55,10 @@ if not $_is_ssh; and $_has_display; and $_have_code
     # 本地图形会话且 code 可用 → 用 VS Code 作为编辑器
     # 若想让 VS Code 在编辑完文件后才返回，建议加 -w 参数
     # set -gx EDITOR "code -w"
-    set -gx EDITOR code
+    set -gx EDITOR "code --wait"
 else
     # 任何其它情况 → 用 nvim
     set -gx EDITOR nvim
 end
+
+set -gx OPENCODE_ENABLE_EXA 1
