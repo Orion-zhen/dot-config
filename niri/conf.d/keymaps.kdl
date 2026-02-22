@@ -57,13 +57,15 @@ binds {
     // Mod+V hotkey-overlay-title="打开剪切板历史" { spawn-sh "kitty --class clipse -e clipse"; }
 
     // 快捷启动
-    Mod+T     hotkey-overlay-title="打开终端" { spawn "wezterm"; }
-    Mod+Space hotkey-overlay-title="打开启动器" { spawn-sh "vicinae toggle"; }
+    Mod+T       hotkey-overlay-title="打开终端" { spawn "wezterm"; }
+    Mod+Return  hotkey-overlay-title="打开终端" { spawn "wezterm"; }
+    Mod+Space   hotkey-overlay-title="打开启动器" { spawn-sh "vicinae toggle"; }
     // Mod+Space hotkey-overlay-title="打开启动器" { spawn-sh "dms ipc call spotlight toggle"; }
-    Mod+C     hotkey-overlay-title="打开 VSCode" { spawn "code"; }
-    Mod+B     hotkey-overlay-title="打开默认浏览器" { spawn "zen-browser"; }
-    Mod+E     hotkey-overlay-title="打开文件资源管理器" { spawn "nautilus"; }
-    Mod+I     hotkey-overlay-title="打开任务管理器" { spawn "missioncenter"; }
+    Mod+C       hotkey-overlay-title="打开 VSCode" { spawn "code"; }
+    Mod+B       hotkey-overlay-title="打开默认浏览器" { spawn "zen-browser"; }
+    Mod+E       hotkey-overlay-title="打开文件资源管理器" { spawn "nautilus"; }
+    Mod+I       hotkey-overlay-title="打开任务管理器" { spawn "missioncenter"; }
+    Mod+Shift+C hotkey-overlay-title="打开 OpenCode" { spawn-sh "wezterm start --class opencode opencode"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -81,7 +83,7 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
     // 切换总览模式, 也可以通过鼠标移动到左上角或触控板四指滑动
-    Mod+O repeat=false hotkey-overlay-title="打开总览模式" { toggle-overview; }
+    // Mod+O repeat=false hotkey-overlay-title="打开总览模式" { toggle-overview; }
     Mod+D repeat=false hotkey-overlay-title="打开总览模式" { toggle-overview; }
 
     // 切换焦点窗口/显示器/工作区
