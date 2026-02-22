@@ -18,7 +18,7 @@ window-rule {
     open-focused true // 焦点到该窗口
 }
 
-// 浏览器默认宽度 75%
+// 浏览器默认宽度 80%
 window-rule {
     match app-id="zen"
     match app-id="zen-browser"
@@ -26,8 +26,15 @@ window-rule {
     match app-id="chromium"
 
     default-column-width {
-        proportion 0.75
+        proportion 0.8
     }
+}
+
+// OpenCode 默认宽度 75%
+window-rule {
+    match app-id="opencode"
+
+    default-column-width { proportion 0.75; }
 }
 
 // Xephyr 套壳 WPS
@@ -73,6 +80,22 @@ window-rule {
 
     open-floating true
     open-focused  true
+}
+
+window-rule {
+    match title="图片查看器" app-id="QQ"
+    match title="图片和视频" app-id="wechat"
+    match title="聊天记录"
+
+    open-floating true
+    open-focused true
+}
+
+window-rule {
+    match app-id="QQ"
+    match app-id="wechat"
+
+    default-column-width { proportion 0.3333; }
 }
 
 // 剪切板
