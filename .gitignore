@@ -79,6 +79,9 @@ nvim/lazyvim.json
 !tmux/
 !tmux/**
 
+!uv
+!uv/**
+
 !vicinae
 !vicinae/**
 
