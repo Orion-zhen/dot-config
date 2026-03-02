@@ -15,6 +15,7 @@ end
 if test -d /opt/rocm
     set -gx ROCM_HOME /opt/rocm
     set -gx FLASH_ATTENTION_TRITON_AMD_ENABLE 1
+    set -gx TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL 1
 end
 
 if test -d $HOME/.cert
