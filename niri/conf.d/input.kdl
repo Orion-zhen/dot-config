@@ -14,12 +14,12 @@ input {
     touchpad {
         // off // 关闭该设备
         tap // 轻触为点击
-        // dwt
+        dwt // 打字时禁用
         // dwtp
         drag true // 启用拖拽
         drag-lock // 拖拽锁定
         natural-scroll // 自然滚动
-        accel-speed 0.2 // 滚动加速
+        accel-speed 0.15 // 滚动加速
         accel-profile "adaptive" // 加速策略, 可选 adaptive, flat
         scroll-method "two-finger" // 双指滑动
         // disabled-on-external-mouse
