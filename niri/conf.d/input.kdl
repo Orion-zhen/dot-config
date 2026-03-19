@@ -46,7 +46,7 @@ input {
     }
 
     // 使鼠标自动移动到用户新选中的窗口中心
-    // warp-mouse-to-focus mode="center-xy"
+    warp-mouse-to-focus mode="center-xy"
 
     // 焦点窗口跟随鼠标
     // 设置 max-scroll-amount="0%" 使其仅对全部展示在屏幕中的窗口生效
