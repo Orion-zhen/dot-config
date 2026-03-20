@@ -79,8 +79,10 @@ binds {
     XF86AudioMute        allow-when-locked=true { spawn-sh "pamixer -t"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "pamixer --default-source -m"; }
     // 亮度
-    XF86MonBrightnessUp allow-when-locked=true   { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+    // XF86MonBrightnessUp allow-when-locked=true   { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    XF86MonBrightnessUp allow-when-locked=true   { spawn-sh "dms ipc brightness increment 5 \"\""; }
+    // XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "dms ipc brightness decrement 5 \"\""; }
 
     // 切换总览模式, 也可以通过鼠标移动到左上角或触控板四指滑动
     // Mod+O repeat=false hotkey-overlay-title="打开总览模式" { toggle-overview; }
