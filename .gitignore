@@ -5,6 +5,7 @@
 
 !avatar.jpg
 
+!clight.conf
 !code-flags.conf
 !electron-flags.conf
 !qq-flags.conf
@@ -13,6 +14,9 @@
 
 !btop/
 !btop/**
+
+!clight.d/
+!clight.d/*.example
 
 !clipse/
 !clipse/config.json
@@ -72,6 +76,10 @@ nvim/lazyvim.json
 
 !sherlock/
 !sherlock/**
+
+!systemd/
+!systemd/user/
+!systemd/user/*.service
 
 !tealdeer
 !tealdeer/**

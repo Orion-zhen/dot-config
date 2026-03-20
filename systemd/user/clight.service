@@ -1,0 +1,18 @@
+[Unit]
+Description=Clight - Lightweight screen brightness daemon
+Documentation=https://github.com/FedeDP/Clight/wiki
+# 确保在 D-Bus 启动后再运行，因为 clight 需要通过 D-Bus 与后台 clightd 通信
+After=graphical-session.target dbus.socket
+PartOf=graphical-session.target
+
+[Service]
+Type=dbus
+BusName=org.clight.clight
+ExecStart=/usr/bin/clight
+Restart=on-failure
+# 遇到意外崩溃时自动重启
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target

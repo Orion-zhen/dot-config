@@ -1,0 +1,8 @@
+daytime:
+{
+  # 注释掉这两行，使用 geoclue 自动获取
+  latitude = 1.14;
+  longitude = 114.5;
+
+  event_duration = 1800;
+};
