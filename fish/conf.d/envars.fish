@@ -64,4 +64,4 @@ else
     set -gx EDITOR nvim
 end
 
-set -gx OPENCODE_ENABLE_EXA 1
+set -gx OPENCODE_EXPERIMENTAL 1
