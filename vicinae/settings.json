@@ -9,6 +9,7 @@
 // Learn more about configuration at https://docs.vicinae.com/config
 
 {
+   "$schema": "https://vicinae.com/schemas/config.json",
    "imports": [],
    "close_on_focus_loss": false,
    "consider_preedit": false,
@@ -32,6 +33,9 @@
          "name": "vicinae-dark",
          "icon_theme": "auto"
       }
+   },
+   "telemetry": {
+      "system_info": false
    },
    "launcher_window": {
       "opacity": 0.95,
