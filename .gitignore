@@ -25,6 +25,9 @@
 !containers/
 !containers/**
 
+!direnv/
+!direnv/**
+
 !fish/
 !fish/**
 fish/fish_variables
