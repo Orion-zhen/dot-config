@@ -13,8 +13,6 @@ binds {
     // 退出 Niri
     Mod+Shift+Q hotkey-overlay-title="退出 Niri" { quit; }
     Ctrl+Alt+Delete { quit; }
-    // 关闭显示器, 通过任意操作来重启显示器
-    Mod+Shift+E hotkey-overlay-title="关闭所有显示器" { power-off-monitors; }
     // 关闭窗口
     Mod+Q repeat=false hotkey-overlay-title="关闭当前窗口" { close-window; }
 
@@ -40,6 +38,8 @@ binds {
 
     // 锁屏
     Mod+L hotkey-overlay-title="锁定屏幕" { spawn "hyprlock"; }
+    // 关闭显示器, 通过任意操作来重启显示器
+    Mod+Shift+L hotkey-overlay-title="关闭所有显示器" { power-off-monitors; }
 
     // 通知中心 by dms-shell-niri
     Mod+N hotkey-overlay-title="打开通知中心" { spawn-sh "dms ipc call notifications toggle"; }
