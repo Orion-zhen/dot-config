@@ -8,7 +8,7 @@
 WIFI_IFACE=""
 LAN_IFACE=""
 
-# 瞬秒级遍历物理无线网卡
+# 遍历物理无线网卡
 for iface in /sys/class/net/w*; do
   if [ -e "$iface" ]; then
     state=$(cat "$iface/operstate" 2>/dev/null)
