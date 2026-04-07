@@ -86,11 +86,13 @@ RAM_INFO=" ${RAM_USED}"
 # 4. 电池电量 (Battery)
 # ---------------------------------------------------------
 BAT_INFO=""
-if ls /sys/class/power_supply/BAT* 1> /dev/null 2>&1; then
-  BAT_PATH=$(ls -1 /sys/class/power_supply/BAT* | head -n 1)
-  if [ -f "$BAT_PATH/capacity" ]; then
-    BAT_CAP=$(cat "$BAT_PATH/capacity")
-    BAT_STAT=$(cat "$BAT_PATH/status")
+
+# 使用原生 globbing 遍历，避免 ls 列出目录内容，且零外部命令调用
+for bat_dir in /sys/class/power_supply/BAT*; do
+  # 确保是目录且包含 capacity 文件
+  if [ -d "$bat_dir" ] && [ -f "$bat_dir/capacity" ]; then
+    BAT_CAP=$(cat "$bat_dir/capacity")
+    BAT_STAT=$(cat "$bat_dir/status")
 
     if [ "$BAT_STAT" = "Charging" ]; then
       BAT_ICON="󰂄"
@@ -102,8 +104,11 @@ if ls /sys/class/power_supply/BAT* 1> /dev/null 2>&1; then
       fi
     fi
     BAT_INFO="  |  $BAT_ICON ${BAT_CAP}%"
+
+    # 找到第一个有效电池后跳出循环
+    break
   fi
-fi
+done
 
 # ---------------------------------------------------------
 # 5. 组装输出
