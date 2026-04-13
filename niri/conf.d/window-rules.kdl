@@ -118,6 +118,7 @@ window-rule {
 
 // 对话窗口
 window-rule {
+    match app-id="termfilechooser"
     match title="^(Open File.*)$"
     match title="^(打开文件.*)$"
     match title="^(Select a File.*)$"
