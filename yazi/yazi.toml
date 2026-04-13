@@ -24,6 +24,9 @@ tab_size = 2
 image_filter = "catmull-rom"
 image_quality = 75
 
+max_width = 1500
+max_height = 3000
+
 [input]
 cursor_blink = true
 
