@@ -40,6 +40,10 @@ edit = [
   { run = "code %s",            desc = "code",         for = "windows", orphan = true },
   { run = "code -w %s",         desc = "code (block)", for = "windows", block = true },
 ]
+# 批量重命名专用
+bulk-rename = [
+  { run = "nvim %s", desc = "nvim 批量重命名" },
+]
 play = [
   { run = "xdg-open %s1",    desc = "Play", for = "linux", orphan = true },
   { run = "open %s",         desc = "Play", for = "macos" },
@@ -73,6 +77,7 @@ download = [
 # 打开文件的策略
 [open]
 rules = [
+  { url = "bulk-rename.txt", use = "bulk-rename" },
   # Folder
   { url = "*/", use = [ "edit", "open", "reveal" ] },
   # Text
