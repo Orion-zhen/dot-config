@@ -1,5 +1,8 @@
 -- ~/.config/yazi/init.lua
 
+-- DuckDB plugin configuration
+require("duckdb"):setup()
+
 -- 文件信息中同时展示大小和修改时间
 function Linemode:size_and_mtime()
     local time = math.floor(self._file.cha.mtime or 0)
