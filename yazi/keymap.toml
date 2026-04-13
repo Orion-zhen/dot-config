@@ -164,8 +164,8 @@ keymap = [
   { on = "<C-b>", run = "plugin toggle-pane max-preview", desc = "最大化预览界面" },
 
   # 缩放图片预览
-  { on = "+", run = "plugin zoom 1", desc = "放大预览图像" },
-  { on = "-", run = "plugin zoom 1", desc = "缩小预览图像" },
+  { on = "+", run = "plugin zoom 1",  desc = "放大预览图像" },
+  { on = "-", run = "plugin zoom -1", desc = "缩小预览图像" },
 
   # Tasks
   { on = "w", run = "tasks:show", desc = "Show task manager" },
