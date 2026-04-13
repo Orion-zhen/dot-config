@@ -90,7 +90,16 @@ keymap = [
   { on = [ "p", "p" ], run = "paste",              desc = "粘贴到当前目录下" },
   { on = [ "p", "P" ], run = "plugin smart-paste", desc = "粘贴到选中目录中"},
   { on = [ "p", "l" ], run = "link",               desc = "创建符号链接" },
+  { on = [ "p", "r" ], run = "link --relative",    desc = "创建符号链接(相对路径)" },
   { on = [ "p", "L" ], run = "hardlink",           desc = "创建硬链接" },
+
+  # root 用户操作
+  { on = [ "R", "p", "p" ], run = "plugin sudo -- paste",    desc = "粘贴到当前目录下" },
+  { on = [ "R", "p", "l" ], run = "plugin sudo -- link",     desc = "创建符号链接" },
+  { on = [ "R", "p", "L" ], run = "plugin sudo -- hardlink", desc = "创建硬链接" },
+  { on = [ "R", "m" ],      run = "plugin sudo -- chmod",    desc = "chmod" },
+  { on = [ "R", "n" ],      run = "plugin sudo -- cerate",   desc = "创建文件" },
+  { on = [ "R", "r" ],      run = "plugin sudo -- rename",   desc = "重命名" },
 
   # Filter
   { on = "f", run = "filter --smart", desc = "文件过滤器" },
