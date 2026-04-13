@@ -54,10 +54,8 @@ keymap = [
   { on = "<Tab>", run = "spot", desc = "查看文件信息" },
 
   # 文件操作
-  { on = "o",         run = "open",                              desc = "Open selected files" },
-  { on = "O",         run = "open --interactive",                desc = "Open selected files interactively" },
+  { on = "o",         run = "open --interactive",                desc = "选择打开方式" },
   { on = "<Enter>",   run = "open",                              desc = "Open selected files" },
-  { on = "<S-Enter>", run = "open --interactive",                desc = "Open selected files interactively" },
   { on = "d",         run = "remove",                            desc = "Trash selected files" },
   { on = "D",         run = "remove --permanently",              desc = "Permanently delete selected files" },
   { on = "<C-n>",     run = "create",                            desc = "创建文件, 以 / 结尾创建文件夹" },
