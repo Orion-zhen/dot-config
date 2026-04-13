@@ -19,11 +19,6 @@ keymap = [
   { on = "<Up>",   run = "arrow prev", desc = "上一个文件" },
   { on = "<Down>", run = "arrow next", desc = "下一个文件" },
 
-  { on = "<C-u>", run = "arrow -50%",  desc = "Move cursor up half page" },
-  { on = "<C-d>", run = "arrow 50%",   desc = "Move cursor down half page" },
-  { on = "<C-b>", run = "arrow -100%", desc = "Move cursor up one page" },
-  { on = "<C-f>", run = "arrow 100%",  desc = "Move cursor down one page" },
-
   { on = "<S-PageUp>",   run = "arrow -50%",  desc = "Move cursor up half page" },
   { on = "<S-PageDown>", run = "arrow 50%",   desc = "Move cursor down half page" },
   { on = "<PageUp>",     run = "arrow -100%", desc = "Move cursor up one page" },
@@ -158,6 +153,8 @@ keymap = [
   # 打开终端
   { on = "!", for = "unix",    run  = 'shell "$SHELL" --block',       desc = "在此处开启终端" },
   { on = "!", for = "windows", run  = 'shell powershell.exe --block', desc = "在此处开启 PowerShell" },
+
+  { on = "<C-b>", run = "plugin toggle-pane max-preview", desc = "最大化预览界面" },
 
   # Tasks
   { on = "w", run = "tasks:show", desc = "Show task manager" },
