@@ -8,6 +8,9 @@
 !clight.conf
 !code-flags.conf
 !electron-flags.conf
+
+!mimeapps.list
+
 !qq-flags.conf
 
 !starship.toml
