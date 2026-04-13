@@ -16,8 +16,10 @@ keymap = [
   { on = "k", run = "arrow prev", desc = "上一个文件" },
   { on = "j", run = "arrow next", desc = "下一个文件" },
 
-  { on = "<Up>",   run = "arrow prev", desc = "上一个文件" },
-  { on = "<Down>", run = "arrow next", desc = "下一个文件" },
+  { on = "<Up>",     run = "arrow prev",  desc = "上一个文件" },
+  { on = "<Down>",   run = "arrow next",  desc = "下一个文件" },
+  { on = "<S-Up>",   run = "arrow -100%", desc = "上一页" },
+  { on = "<S-Down>", run = "arrow 100%",  desc = "下一页" },
 
   { on = "<S-PageUp>",   run = "arrow -50%",  desc = "Move cursor up half page" },
   { on = "<S-PageDown>", run = "arrow 50%",   desc = "Move cursor down half page" },
