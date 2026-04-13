@@ -60,8 +60,6 @@ keymap = [
   { on = "D",         run = "remove --permanently",              desc = "Permanently delete selected files" },
   { on = "<C-n>",     run = "create",                            desc = "创建文件, 以 / 结尾创建文件夹" },
   { on = "r",         run = "rename --cursor=before_ext",        desc = "Rename selected file(s)" },
-  { on = ";",         run = "shell --interactive",               desc = "异步运行 shell 命令" },
-  { on = ":",         run = "shell --block --interactive",       desc = "阻塞式运行 shell 命令" },
   { on = ".",         run = "hidden toggle",                     desc = "Toggle the visibility of hidden files" },
   { on = "z",         run = "plugin zoxide",                     desc = "使用 Zoxide 切换路径" },
   { on = "<C-o>",     run = "shell -- dragon-drop -x -i -T %h",  desc = "使用 dragon 拖放文件到别处" },
@@ -158,8 +156,10 @@ keymap = [
   { on = "}", run = "tab_swap 1",  desc = "后移当前 Tab" },
 
   # 打开终端
-  { on = "!", for = "unix",    run  = 'shell "$SHELL" --block',       desc = "在此处开启终端" },
-  { on = "!", for = "windows", run  = 'shell powershell.exe --block', desc = "在此处开启 PowerShell" },
+  { on = [ "@", "t" ], for = "unix",    run = 'shell "$SHELL" --block',       desc = "在此处开启终端" },
+  { on = [ "@", "t" ], for = "windows", run = 'shell powershell.exe --block', desc = "在此处开启 PowerShell" },
+  { on = [ "@", "c" ],                  run = "shell --interactive",          desc = "异步运行 shell 命令" },
+  { on = [ "@", "s" ],                  run = "shell --block --interactive",  desc = "阻塞式运行 shell 命令" },
 
   { on = "<C-b>", run = "plugin toggle-pane max-preview", desc = "最大化预览界面" },
 
