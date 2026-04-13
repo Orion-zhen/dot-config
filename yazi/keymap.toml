@@ -59,31 +59,32 @@ keymap = [
 	{ on = "<Tab>", run = "spot", desc = "查看文件信息" },
 
 	# 文件操作
-	{ on = "o",         run = "open",                        desc = "Open selected files" },
-	{ on = "O",         run = "open --interactive",          desc = "Open selected files interactively" },
-	{ on = "<Enter>",   run = "open",                        desc = "Open selected files" },
-	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
-	{ on = "y",         run = "yank",                        desc = "Yank selected files (copy)" },
-	{ on = "x",         run = "yank --cut",                  desc = "Yank selected files (cut)" },
-	{ on = "p",         run = "paste",                       desc = "Paste yanked files" },
-	{ on = "P",         run = "plugin smart-paste",          desc = "粘贴进选中的目录" },
-	{ on = "-",         run = "link",                        desc = "Symlink the absolute path of yanked files" },
-	{ on = "_",         run = "link --relative",             desc = "Symlink the relative path of yanked files" },
-	{ on = "<C-->",     run = "hardlink",                    desc = "Hardlink yanked files" },
-	{ on = "Y",         run = "unyank",                      desc = "Cancel the yank status" },
-	{ on = "X",         run = "unyank",                      desc = "Cancel the yank status" },
-	{ on = "d",         run = "remove",                      desc = "Trash selected files" },
-	{ on = "D",         run = "remove --permanently",        desc = "Permanently delete selected files" },
-	{ on = "a",         run = "create",                      desc = "Create a file (ends with / for directories)" },
-	{ on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
-	{ on = ";",         run = "shell --interactive",         desc = "异步运行 shell 命令" },
-	{ on = ":",         run = "shell --block --interactive", desc = "阻塞式运行 shell 命令" },
-	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
-	{ on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },
-	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
-	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
-	{ on = "z",         run = "plugin zoxide",               desc = "使用 Zoxide 切换路径" },
-	{ on = "Z",         run = "plugin fzf",                  desc = "使用 fzf 搜索目录内文件" },
+	{ on = "o",         run = "open",                        			desc = "Open selected files" },
+	{ on = "O",         run = "open --interactive",          			desc = "Open selected files interactively" },
+	{ on = "<Enter>",   run = "open",                        			desc = "Open selected files" },
+	{ on = "<S-Enter>", run = "open --interactive",          			desc = "Open selected files interactively" },
+	{ on = "y",         run = "yank",                        			desc = "Yank selected files (copy)" },
+	{ on = "x",         run = "yank --cut",                  			desc = "Yank selected files (cut)" },
+	{ on = "p",         run = "paste",                       			desc = "Paste yanked files" },
+	{ on = "P",         run = "plugin smart-paste",          			desc = "粘贴进选中的目录" },
+	{ on = "-",         run = "link",                        			desc = "Symlink the absolute path of yanked files" },
+	{ on = "_",         run = "link --relative",             			desc = "Symlink the relative path of yanked files" },
+	{ on = "<C-->",     run = "hardlink",                    			desc = "Hardlink yanked files" },
+	{ on = "Y",         run = "unyank",                      			desc = "Cancel the yank status" },
+	{ on = "X",         run = "unyank",                      			desc = "Cancel the yank status" },
+	{ on = "d",         run = "remove",                      			desc = "Trash selected files" },
+	{ on = "D",         run = "remove --permanently",        			desc = "Permanently delete selected files" },
+	{ on = "a",         run = "create",                      			desc = "创建文件, 以 / 结尾创建文件夹" },
+	{ on = "r",         run = "rename --cursor=before_ext",  			desc = "Rename selected file(s)" },
+	{ on = ";",         run = "shell --interactive",         			desc = "异步运行 shell 命令" },
+	{ on = ":",         run = "shell --block --interactive", 			desc = "阻塞式运行 shell 命令" },
+	{ on = ".",         run = "hidden toggle",               			desc = "Toggle the visibility of hidden files" },
+	{ on = "s",         run = "search --via=fd",             			desc = "Search files by name via fd" },
+	{ on = "S",         run = "search --via=rg",             			desc = "Search files by content via ripgrep" },
+	{ on = "<C-s>",     run = "escape --search",             			desc = "Cancel the ongoing search" },
+	{ on = "z",         run = "plugin zoxide",               			desc = "使用 Zoxide 切换路径" },
+	{ on = "Z",         run = "plugin fzf",                  			desc = "使用 fzf 搜索目录内文件" },
+	{ on = "<C-n>", 		run = "shell -- dragon-drop -x -i -T %h", desc = "使用 dragon 拖放文件到别处" },
 
 	# Linemode
 	{ on = [ "m", "s" ], run = "linemode size",        desc = "Linemode: size" },
@@ -132,7 +133,8 @@ keymap = [
 	{ on = [ "g", "f" ],       run = "follow",           desc = "跟踪符号链接" },
 
 	# Tabs
-	{ on = "t", run = "tab_create --current", desc = "开启新 Tab" },
+	{ on = [ "t", "t" ], run = "tab_create --current", desc = "开启新 Tab" },
+	{ on = [ "t", "n" ], run = "plugin smart-tab",		 desc = "从选中文件夹进入新 Tab" },
 
 	{ on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
 	{ on = "2", run = "tab_switch 1", desc = "Switch to second tab" },
@@ -229,12 +231,13 @@ keymap = [
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
 
+# 有输入框的时候
 [input]
 
 keymap = [
-	{ on = "<C-c>",   run = "close",          desc = "Cancel input" },
+	{ on = "<C-c>",   run = "escape",         desc = "清空输入内容" },
 	{ on = "<Enter>", run = "close --submit", desc = "Submit input" },
-	{ on = "<Esc>",   run = "escape",         desc = "Back to normal mode, or cancel input" },
+	{ on = "<Esc>",   run = "close",         	desc = "关闭输入框" },
 	{ on = "<C-[>",   run = "escape",         desc = "Back to normal mode, or cancel input" },
 
 	# Mode
