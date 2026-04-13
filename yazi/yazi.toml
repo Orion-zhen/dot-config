@@ -29,3 +29,77 @@ cursor_blink = true
 
 [confirm]
 delete = true
+
+# 允许的文件打开方式
+[opener]
+edit = [
+  { run = "${EDITOR:-nvim} %s", desc = "$EDITOR",      for = "unix", block = true },
+  { run = "code %s",            desc = "code",         for = "windows", orphan = true },
+  { run = "code -w %s",         desc = "code (block)", for = "windows", block = true },
+]
+play = [
+  { run = "xdg-open %s1",    desc = "Play", for = "linux", orphan = true },
+  { run = "open %s",         desc = "Play", for = "macos" },
+  { run = 'start "" %s1',    desc = "Play", for = "windows", orphan = true },
+  { run = "termux-open %s1", desc = "Play", for = "android" },
+  { run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
+  { run = "mediainfo %s1 & pause", block = true, desc = "Show media info", for = "windows" },
+]
+open = [
+  { run = "xdg-open %s1",    desc = "Open", for = "linux" },
+  { run = "open %s",         desc = "Open", for = "macos" },
+  { run = 'start "" %s1',    desc = "Open", for = "windows", orphan = true },
+  { run = "termux-open %s1", desc = "Open", for = "android" },
+]
+reveal = [
+  { run = "xdg-open %d1",         desc = "Reveal", for = "linux" },
+  { run = "open -R %s1",          desc = "Reveal", for = "macos" },
+  { run = "explorer /select,%s1", desc = "Reveal", for = "windows", orphan = true },
+  { run = "termux-open %d1",      desc = "Reveal", for = "android" },
+  { run = "clear; exiv2 print %s1; echo 'Press enter to exit'; read _", desc = "Show EXIF", for = "unix", block = true },
+]
+extract = [
+  { run = "7z x %s", desc = "Extract here (7z)" },
+  { run = "ya pub extract --list %s", desc = "Extract here" },
+]
+download = [
+  { run = "ya emit download --open %S", desc = "Download and open" },
+  { run = "ya emit download %S",        desc = "Download" },
+]
+
+# 打开文件的策略
+[open]
+rules = [
+  # Folder
+  { url = "*/", use = [ "edit", "open", "reveal" ] },
+  # Text
+  { mime = "text/*", use = [ "edit", "reveal" ] },
+  # Image
+  { mime = "image/*", use = [ "open", "reveal" ] },
+  # Media
+  { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+  # Archive
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
+  # JSON
+  { mime = "application/{json,ndjson}", use = [ "edit", "reveal" ] },
+  { mime = "*/javascript", use = [ "edit", "reveal" ] },
+  # Empty file
+  { mime = "inode/empty", use = [ "edit", "reveal" ] },
+  # Virtual file system
+  { mime = "vfs/{absent,stale}", use = "download" },
+  # Fallback
+  { url = "*", use = [ "open", "reveal" ] },
+]
+
+[plugin]  
+prepend_previewers = [  
+  { mime = "text/csv", run = "duckdb" },
+  { mime = "text/tab-separated-values", run = "duckdb" },
+  { mime = "application/vnd.apache.parquet", run = "duckdb" },
+  { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", run = "duckdb" },
+]
+
+prepend_preloaders = [  
+  { mime = "text/csv", run = "duckdb", multi = false },
+  { mime = "text/tab-separated-values", run = "duckdb", multi = false },
+]
