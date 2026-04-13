@@ -97,6 +97,7 @@ prepend_previewers = [
   { mime = "text/tab-separated-values", run = "duckdb" },
   { mime = "application/vnd.apache.parquet", run = "duckdb" },
   { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", run = "duckdb" },
+  { mime = "application/bittorrent", run = "torrent-preview" },
 ]
 
 prepend_preloaders = [  
