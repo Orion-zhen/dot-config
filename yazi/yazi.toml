@@ -70,7 +70,7 @@ extract = [
   { run = "ya pub extract --list %s", desc = "Extract here" },
 ]
 compress = [
-  { run = "zip -r %s.zip %s -x '*.git*' '*.venv*' '*node_modules*'", desc = "Comperss (zip)" }
+  { run = "zip -r %s.zip %s -x '*.git*' '*.venv*' '*node_modules*'", desc = "Comperss folder (zip)" }
 ]
 download = [
   { run = "ya emit download --open %S", desc = "Download and open" },
