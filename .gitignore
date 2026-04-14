@@ -70,6 +70,7 @@ niri/conf.d/outputs.kdl
 !nvim/**
 nvim/lazy-lock.json
 nvim/lazyvim.json
+nvim/nvim-pack-lock.json
 
 !pacman/
 !pacman/**

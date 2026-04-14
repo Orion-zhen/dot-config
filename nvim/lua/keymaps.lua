@@ -1,4 +1,4 @@
-vim.g.mapleader = " " -- 空格键为 leader key
+vim.g.mapleader = " "      -- 空格键为 leader key
 vim.g.maplocalleader = " " -- 空格键为 leader key
 
 local set = vim.keymap.set
@@ -29,7 +29,7 @@ local set = vim.keymap.set
 ---
 
 -- 保存文件
-set({"n", "v", "x"}, "<C-s>", ":w<CR>", {
+set({ "n", "v", "x" }, "<C-s>", ":w<CR>", {
     desc = "保存文件"
 })
 set("i", "<C-s>", "<esc>:w<CR>", {
@@ -42,22 +42,22 @@ set("i", "<c-d>", "<esc>", {
 })
 
 -- 保存并退出
-set({"n", "v", "x"}, "<leader>qq", ":wq<CR>", {
+set({ "n", "v", "x" }, "<leader>qq", ":wq<CR>", {
     desc = "保存并退出"
 })
 
 -- 撤销
-set({"n", "v", "i"}, "<C-z>", "<ESC>u<CR>", {
+set({ "n", "v", "i" }, "<C-z>", "<ESC>u<CR>", {
     desc = "撤销"
 })
 
 -- 系统剪贴板
-set({"n", "v"}, "<C-c>", '"+y', {
+set({ "n", "v" }, "<C-c>", '"+y', {
     desc = "复制到系统剪切板"
 })
-set({"n", "v"}, "<C-x>", '"+d', {
+set({ "n", "v" }, "<C-x>", '"+d', {
     desc = "剪切到系统剪切板"
 })
-set({"n", "v"}, "<C-p>", '"+p', {
+set({ "n", "v" }, "<C-p>", '"+p', {
     desc = "粘贴到系统剪切板"
 })
