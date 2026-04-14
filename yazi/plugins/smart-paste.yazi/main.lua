@@ -1,4 +1,3 @@
---- @since 2025.5.31
 --- @sync entry
 return {
   entry = function()
