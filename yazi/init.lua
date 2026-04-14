@@ -2,6 +2,8 @@
 
 -- DuckDB plugin configuration
 require("duckdb"):setup()
+-- Recycle bin plugin
+require("recycle-bin"):setup()
 
 -- 文件信息中同时展示大小和修改时间
 function Linemode:size_and_mtime()

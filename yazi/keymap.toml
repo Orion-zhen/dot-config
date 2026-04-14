@@ -172,6 +172,13 @@ keymap = [
   # Tasks
   { on = "w", run = "tasks:show", desc = "Show task manager" },
 
+  # 回收站
+  { on = [ "T", "o" ], run = "plugin recycle-bin -- open",      desc = "打开回收站" },
+  { on = [ "T", "e" ], run = "plugin recycle-bin -- empty",     desc = "清空回收站" },
+  { on = [ "T", "d" ], run = "plugin recycle-bin -- delete",    desc = "删除选中项目" },
+  { on = [ "T", "r" ], run = "plugin recycle-bin -- restore",   desc = "恢复选中项目" },
+  { on = [ "T", "D" ], run = "plugin recycle-bin -- emptyDays", desc = "按天数删除" },
+
   # Help
   { on = "~",    run = "help", desc = "Open help" },
   { on = "<F1>", run = "help", desc = "Open help" },
