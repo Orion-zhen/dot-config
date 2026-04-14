@@ -10,7 +10,7 @@ sort_translit = true
 
 # 显示文件信息
 linemode = "size_and_mtime"
-show_hidden = true
+show_hidden = false # 简化显示内容
 show_symlink = true
 
 # 预览界面
