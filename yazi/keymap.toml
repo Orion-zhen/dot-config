@@ -12,32 +12,22 @@ keymap = [
   { on = "Q",     run = "quit --no-cwd-file", desc = "退出并不写入 cmd-file" },
   { on = "<C-c>", run = "close",              desc = "关闭当前 Tab, 如果是最后一个则退出" },
 
-  # Hopping
-  { on = "k", run = "arrow prev", desc = "上一个文件" },
-  { on = "j", run = "arrow next", desc = "下一个文件" },
-
+  # 导航
   { on = "<Up>",     run = "arrow prev",  desc = "上一个文件" },
   { on = "<Down>",   run = "arrow next",  desc = "下一个文件" },
   { on = "<S-Up>",   run = "arrow -100%", desc = "上一页" },
   { on = "<S-Down>", run = "arrow 100%",  desc = "下一页" },
 
-  { on = "<S-PageUp>",   run = "arrow -50%",  desc = "Move cursor up half page" },
-  { on = "<S-PageDown>", run = "arrow 50%",   desc = "Move cursor down half page" },
-  { on = "<PageUp>",     run = "arrow -100%", desc = "Move cursor up one page" },
-  { on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
+  { on = "<S-PageUp>",   run = "arrow -50%",  desc = "上半页" },
+  { on = "<S-PageDown>", run = "arrow 50%",   desc = "下半页" },
+  { on = "<PageUp>",     run = "arrow -100%", desc = "上一页" },
+  { on = "<PageDown>",   run = "arrow 100%",  desc = "下一页" },
 
   { on = [ "g", "g" ], run = "arrow top", desc = "前往顶部" },
   { on = "G",          run = "arrow bot", desc = "前往底部" },
 
-  # Navigation
-  { on = "h", run = "leave", desc = "Back to the parent directory" },
-  { on = "l", run = "enter", desc = "Enter the child directory" },
-
-  { on = "<Left>",  run = "leave", desc = "Back to the parent directory" },
-  { on = "<Right>", run = "enter", desc = "Enter the child directory" },
-
-  { on = "H", run = "back",    desc = "Back to previous directory" },
-  { on = "L", run = "forward", desc = "Forward to next directory" },
+  { on = "<Left>",  run = "leave", desc = "进入上级目录" },
+  { on = "<Right>", run = "enter", desc = "进入下级目录" },
 
   # Toggle
   { on = "<Space>", run = [ "toggle", "arrow 1" ], desc = "切换当前项目的选中状态" },
@@ -47,10 +37,6 @@ keymap = [
   # Visual mode
   { on = "v", run = "visual_mode",         desc = "视觉模式 (选择模式)" },
   { on = "V", run = "visual_mode --unset", desc = "视觉模式 (反选模式)" },
-
-  # Seeking
-  { on = "K", run = "seek -5", desc = "Seek up 5 units in the preview" },
-  { on = "J", run = "seek 5",  desc = "Seek down 5 units in the preview" },
 
   # Spotting
   { on = "<Tab>", run = "spot", desc = "查看文件信息" },
