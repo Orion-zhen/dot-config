@@ -69,6 +69,9 @@ extract = [
   { run = "7z x %s", desc = "Extract here (7z)" },
   { run = "ya pub extract --list %s", desc = "Extract here" },
 ]
+compress = [
+  { run = "zip -r %s.zip %s -x '*.git*' '*.venv*' '*node_modules*'", desc = "Comperss (zip)" }
+]
 download = [
   { run = "ya emit download --open %S", desc = "Download and open" },
   { run = "ya emit download %S",        desc = "Download" },
@@ -79,7 +82,7 @@ download = [
 rules = [
   { url = "bulk-rename.txt", use = "bulk-rename" },
   # Folder
-  { url = "*/", use = [ "edit", "open", "reveal" ] },
+  { url = "*/", use = [ "edit", "open", "compress", "reveal" ] },
   # Text
   { mime = "text/*", use = [ "edit", "reveal" ] },
   # Image
