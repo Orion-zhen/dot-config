@@ -4,11 +4,12 @@ abbr mkfish "source ~/.config/fish/config.fish"
 abbr vs code
 abbr dbd "docker build"
 abbr dcp "docker-compose"
-abbr nv nvim
 abbr dea deactivate
 
-if type -q autojump
-    abbr j "jump"
+if type -q nvim
+    abbr nv nvim
+    abbr vim nvim
+    abbr vi nvim
 end
 
 if type -q rg
