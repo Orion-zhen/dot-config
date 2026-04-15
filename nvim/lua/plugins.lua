@@ -18,12 +18,12 @@ packadd("mini.nvim")
 
 require("gitsigns").setup({
   signs = {
-    add = { text = "\u{2590}" },        -- ▏
-    change = { text = "\u{2590}" },     -- ▐
-    delete = { text = "\u{2590}" },     -- ◦
-    topdelete = { text = "\u{25e6}" },  -- ◦
+    add = { text = "\u{2590}" },          -- ▏
+    change = { text = "\u{2590}" },       -- ▐
+    delete = { text = "\u{2590}" },       -- ◦
+    topdelete = { text = "\u{25e6}" },    -- ◦
     changedelete = { text = "\u{25cf}" }, -- ●
-    untracked = { text = "\u{25cb}" },  -- ○
+    untracked = { text = "\u{25cb}" },    -- ○
   },
   signcolumn = true,
   current_line_blame = false,
@@ -40,4 +40,8 @@ require("mini.trailspace").setup({})
 require("mini.bufremove").setup({})
 require("mini.notify").setup({})
 require("mini.icons").setup({})
-require("mini.animate").setup({})
+require("mini.animate").setup({
+  scroll = {
+    enable = false, -- 禁用滚动动画, 滚动速度太慢了
+  }
+})
