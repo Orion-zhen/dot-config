@@ -1,6 +1,7 @@
 include "conf.d/animations.kdl"
 include "conf.d/autostart.kdl"
 include "conf.d/env.kdl"
+include "conf.d/gestures.kdl"
 include "conf.d/input.kdl"
 include "conf.d/keymaps.kdl"
 include "conf.d/layout.kdl"
