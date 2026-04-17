@@ -1,0 +1,22 @@
+# https://github.com/Satty-org/Satty#configuration-file
+[general]
+resize = { mode = "smart" } # 智能选择尺寸
+floating-hack = true # 尝试使窗口浮动
+copy-command = "wl-copy" # 使用 wl-copy
+output-filename = "~/Pictures/screenshots/%Y-%m/Screenshot from %Y-%m-%d %H:%M:%S.png" # 保存文件的格式
+save-after-copy = false # 复制之后默认不保存
+initial-tool = "brush" # 默认工具为笔刷
+brush-smooth-history-size = 5
+# Actions to trigger on Escape key (order is important)
+# [possible values: save-to-clipboard, save-to-file, save-to-file-as, copy-filepath-to-clipboard, exit]
+actions-on-escape = ["save-to-clipboard", "exit"]
+# Action to perform when the Enter key is pressed [possible values: save-to-clipboard, save-to-file]
+action-on-enter = "save-to-file"
+
+[font]
+family = "Maple Mono NF"
+fallback = [
+  "LXGWWenKai Nerd Font",
+  "Hack Nerd Font",
+  "Noto Sans CJK SC"
+]

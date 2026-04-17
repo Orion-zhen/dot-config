@@ -45,9 +45,12 @@ binds {
     Mod+N hotkey-overlay-title="打开通知中心" { spawn-sh "dms ipc call notifications toggle"; }
 
     // 屏幕截图
-    Print { screenshot show-pointer=false; }
-    Mod+X hotkey-overlay-title="屏幕截图" { screenshot show-pointer=false; }
-    Mod+Shift+S { screenshot show-pointer=false; }
+    // Print { screenshot show-pointer=false; }
+    // Mod+X hotkey-overlay-title="屏幕截图" { screenshot show-pointer=false; }
+    // Mod+Shift+S { screenshot show-pointer=false; }
+    Print { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f -"; }
+    Mod+X hotkey-overlay-title="屏幕截图" { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f -"; }
+    Mod+Shift+S { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f -"; }
 
     // 剪切板管理
     // Mod+V { spawn-sh "nwg-clipman -w"; }

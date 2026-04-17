@@ -81,6 +81,9 @@ nvim/nvim-pack-lock.json
 !rofi/
 !rofi/**
 
+!satty
+!satty/**
+
 !sherlock/
 !sherlock/**
 
