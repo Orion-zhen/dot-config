@@ -1,0 +1,15 @@
+[Unit]
+Description=Mihomo Party Proxy Client
+# 确保在基础环境准备好后再启动
+After=network.target
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/mihomo-party
+# 崩溃或意外退出时自动重启
+Restart=on-failure
+RestartSec=5
+
+[Install]
+# 绑定到默认的用户会话目标, 在登录时触发
+WantedBy=default.target
