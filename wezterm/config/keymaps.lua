@@ -25,18 +25,18 @@ function module.apply(config)
 
         -- CTRL + 方向键 移动光标
         -- macOS: Option + 方向键
-        {
-            mods = "CTRL",
-            key = "LeftArrow",
-            -- 移动到开头
-            action = act.SendString("\u{1b}OH")
-        },
-        {
-            mods = "CTRL",
-            key = "RightArrow",
-            -- 移动到末尾
-            action = act.SendString("\u{1b}OF")
-        },
+        -- {
+        --     mods = "CTRL",
+        --     key = "LeftArrow",
+        --     -- 移动到开头
+        --     action = act.SendString("\u{1b}OH")
+        -- },
+        -- {
+        --     mods = "CTRL",
+        --     key = "RightArrow",
+        --     -- 移动到末尾
+        --     action = act.SendString("\u{1b}OF")
+        -- },
         -- Ctrl + Backspace 清空一行
         -- macOS: Command + Backspace
         {
