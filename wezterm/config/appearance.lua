@@ -42,7 +42,7 @@ function module.apply(config)
 
     -- 背景不透明度
     if is_niri then
-        config.window_background_opacity = 0.9
+        config.window_background_opacity = 0.85
     elseif is_hyprland then
         config.window_background_opacity = 0.4
     elseif is_kde then

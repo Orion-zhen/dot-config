@@ -10,3 +10,9 @@ hotkey-overlay {
     skip-at-startup
     hide-not-bound
 }
+
+blur {
+    passes 4
+    offset 2.0
+    noise 0.02
+}

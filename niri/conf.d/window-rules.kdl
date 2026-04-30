@@ -6,6 +6,14 @@
 window-rule {
     geometry-corner-radius 10
     clip-to-geometry true
+    background-effect {
+        blur true
+    }
+    popups {
+        background-effect {
+            blur true
+        }
+    }
 }
 
 // 聊天软件集中到特定工作区
