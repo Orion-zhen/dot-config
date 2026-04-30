@@ -44,7 +44,12 @@ if type -q opencode
     abbr oc opencode
 end
 
-if type -q tmux
+if type -q zellij
+    abbr tls "zellij list-sessions"
+    abbr tat "zellij attach"
+    abbr tkill "zellij kill-session"
+    abbr tnew "zellij --session"
+else if type -q tmux
     abbr tls "tmux ls"
     abbr tat "tmux attach -t"
     abbr tkill "tmux kill-session -t"
