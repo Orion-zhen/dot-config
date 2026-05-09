@@ -1,0 +1,17 @@
+[Unit]
+Description=llama-swap user service
+Wants=network-online.target
+After=network-online.target
+
+StartLimitIntervalSec=30s
+StartLimitBurst=3
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/llama-swap -config %h/.config/llama-swap.yaml -listen 0.0.0.0:11451 -watch-config
+RestartSec=3
+Restart=on-failure
+LogLevelMax=3
+
+[Install]
+WantedBy=default.target
