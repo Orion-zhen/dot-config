@@ -54,7 +54,7 @@ binds {
 
     // 剪切板管理
     // Mod+V { spawn-sh "nwg-clipman -w"; }
-    Mod+V hotkey-overlay-title="打开剪切板历史" { spawn-sh "vicinae vicinae://extensions/vicinae/clipboard/history"; }
+    Mod+V hotkey-overlay-title="打开剪切板历史" { spawn-sh "vicinae vicinae://launch/clipboard/history"; }
     // Mod+V hotkey-overlay-title="打开剪切板历史" { spawn-sh "dms ipc call clipboard toggle"; }
     // Mod+V hotkey-overlay-title="打开剪切板历史" { spawn-sh "wezterm start --class clipse clipse"; }
     // Mod+V hotkey-overlay-title="打开剪切板历史" { spawn-sh "kitty --class clipse -e clipse"; }
