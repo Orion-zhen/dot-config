@@ -4,8 +4,9 @@
 # 提示符
 format = """
 $username\
-$sudo\
+$hostname\
 $localip\
+$sudo\
 $shlvl\
 $singularity\
 $kubernetes \
@@ -183,7 +184,7 @@ format = '\[[$symbol($version)]($style)\]'
 # 显示环境变量
 [env_var.HTTP_PROXY]
 variable = "http_proxy"
-default = "No Proxy"
+# default = "No Proxy"
 format = '\[$symbol[$env_value]($style)\]'
 style = "white bold dimmed"
 symbol = "󰅟 "
@@ -250,6 +251,13 @@ format = '\[[$symbol($version)]($style)\]'
 [hg_branch]
 format = '\[[$symbol$branch]($style)\]'
 
+[hostname]
+ssh_only = true
+style = "bold green dimmed"
+format = '\[[$hostname]($style)\]'
+disabled = false
+aliases = {}
+
 [java]
 format = '\[[$symbol($version)]($style)\]'
 
@@ -267,7 +275,10 @@ format = '\[[$symbol$context( \($namespace\))]($style)\]'
 disabled = false
 
 [localip]
-disabled = true
+ssh_only = true
+style = "bold green dimmed"
+format = '\[[$localipv4]($style)\]'
+disabled = false
 
 [lua]
 format = '\[[$symbol($version)]($style)\]'
