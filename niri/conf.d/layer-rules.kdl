@@ -1,0 +1,4 @@
+layer-rule {
+    match namespace="wallpaperengine"
+    place-within-backdrop true
+}
