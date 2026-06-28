@@ -65,3 +65,4 @@ else
 end
 
 set -gx OPENCODE_EXPERIMENTAL 1
+set -gx HOMEBREW_NO_ENV_HINTS 1
