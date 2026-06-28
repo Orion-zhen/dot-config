@@ -36,7 +36,3 @@ output_path = "~/.config/waybar/style.css"
 [templates.wezterm]
 input_path = "templates/wezterm/colors.lua.template"
 output_path = "~/.config/wezterm/config/colors.lua"
-
-[templates.ghostty]
-input_path = "templates/ghostty/colors.ghostty.template"
-output_path = "~/.config/ghostty/config/colors.ghostty"
