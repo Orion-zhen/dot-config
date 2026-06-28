@@ -1,10 +1,14 @@
 function fish_greeting
-  # 获取所有可用的 ascii 形象并随机选择一个
-  # cowsay -l 会列出所有图案, 我们用 string split 和 random choice 来优雅地抽卡
-  set -l all_cows (cowsay -l | tail -n +2 | string split " " | string match -v "")
-  set random_cow (random choice $all_cows)
+  # 仅三个命令都存在, 且不是 macOS 时, 展示 cowsay
+  # macOS 屏幕空间太小, 展示大段 cowsay 浪费空间
+  if test (uname) != Darwin; and type -q lolcat; and type -q cowsay; and type -q fortune
+    # 获取所有可用的 ascii 形象并随机选择一个
+    # cowsay -l 会列出所有图案, 我们用 string split 和 random choice 来优雅地抽卡
+    set -l all_cows (cowsay -l | tail -n +2 | string split " " | string match -v "")
+    set random_cow (random choice $all_cows)
 
-  fortune | cowsay -f $random_cow | lolcat
+    fortune | cowsay -f $random_cow | lolcat
+  end
 
   # 底部留白并加上一句极简的专属问候, 保持 UI 呼吸感
   # 动态获取系统用户名，并将其首字母转为大写
