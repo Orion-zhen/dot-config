@@ -1,0 +1,18 @@
+# 光标和滚动：减少视觉闪烁，给长输出留足回看空间。
+cursor-style = block
+cursor-style-blink = false
+scrollback-limit = 20000000
+mouse-hide-while-typing = true
+
+# macOS 输入习惯：Option 作为 Alt/Meta，方便 shell、tmux、编辑器快捷键。
+macos-option-as-alt = true
+
+# 剪贴板：选择即复制，右键粘贴，贴近多数现代终端体验。
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+right-click-action = paste
+
+# Shell 集成：让目录、提示符和跳转能力更聪明。
+shell-integration = detect
+shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo

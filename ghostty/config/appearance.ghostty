@@ -1,0 +1,16 @@
+# macOS 外观：轻微透明和模糊，保留内容可读性。
+background-opacity = 0.88
+background-blur = 20
+window-padding-x = 14
+window-padding-y = 10
+window-padding-balance = true
+window-decoration = true
+macos-titlebar-style = tabs
+
+# 初始尺寸：13 寸 MacBook Air 上适度放大，但保留桌面余量。
+window-width = 120
+window-height = 32
+
+# 窗口状态：隐藏标题文字，并记住窗口位置/尺寸等状态。
+# title = " "
+window-save-state = always

@@ -1,0 +1,7 @@
+# 字体：沿用现有终端偏好，并给中文/符号留后备字体。
+font-family = "Maple Mono NF"
+font-family = "LXGW WenKai"
+font-family = "Hack Nerd Font"
+font-family = "Noto Sans CJK SC"
+font-size = 18
+font-thicken = true

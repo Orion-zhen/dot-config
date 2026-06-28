@@ -1,0 +1,9 @@
+# Ghostty macOS 个性化起点
+# 官方配置文档: https://ghostty.org/docs/config
+
+# 主入口：按职责加载子配置，模仿 fish/conf.d 与 wezterm/config 的拆分方式。
+config-file = config/fonts.ghostty
+config-file = config/colors.ghostty
+config-file = config/appearance.ghostty
+config-file = config/behavior.ghostty
+config-file = config/keymaps.ghostty
