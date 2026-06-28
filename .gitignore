@@ -36,6 +36,9 @@
 fish/fish_variables
 fish/conf.d/custom.fish
 
+!ghostty
+!ghostty/**
+
 !git/
 !git/config
 
