@@ -48,6 +48,7 @@ if type -q zellij
     abbr tls "zellij list-sessions"
     abbr tat "zellij attach"
     abbr tkill "zellij kill-session"
+    abbr tdel "zellij delete-session"
     abbr tnew "zellij --session"
 else if type -q tmux
     abbr tls "tmux ls"
