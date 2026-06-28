@@ -8,6 +8,7 @@ function fish_greeting
     set random_cow (random choice $all_cows)
 
     fortune | cowsay -f $random_cow | lolcat
+    echo ""
   end
 
   # 底部留白并加上一句极简的专属问候, 保持 UI 呼吸感
@@ -29,9 +30,7 @@ function fish_greeting
     ">>> The data must flow, $cap_user."
 
   # 打印最终问候
-  echo ""
   set_color -o cyan
   echo (random choice $quotes)
   set_color normal
-  echo ""
 end
