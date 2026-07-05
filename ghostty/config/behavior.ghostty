@@ -15,4 +15,5 @@ right-click-action = paste
 
 # Shell 集成：让目录、提示符和跳转能力更聪明。
 shell-integration = detect
-shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
+# 禁用 ssh-env, ssh-terminfo 以免 xterm-ghostty 被发送到远程, 带来兼容性问题
+shell-integration-features = cursor,sudo,title
