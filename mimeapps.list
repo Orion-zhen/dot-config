@@ -20,6 +20,7 @@ application/json=code.desktop;
 application/wps-office.xls=libreoffice-calc.desktop;
 video/mp4=org.kde.haruna.desktop;
 text/x-tex=code.desktop;
+application/octet-stream=code.desktop;
 
 [Default Applications]
 application/pdf=zen.desktop;zen-browser.desktop;
