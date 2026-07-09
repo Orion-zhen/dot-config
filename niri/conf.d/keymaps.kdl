@@ -50,7 +50,7 @@ binds {
     // Mod+Shift+S { screenshot show-pointer=false; }
     Print { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f -"; }
     Mod+X hotkey-overlay-title="屏幕截图" { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f -"; }
-    Mod+Shift+S { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f -"; }
+    Mod+Shift+S { screenshot show-pointer=false; }
 
     // 剪切板管理
     // Mod+V { spawn-sh "nwg-clipman -w"; }
@@ -69,7 +69,7 @@ binds {
     // Mod+E       hotkey-overlay-title="打开文件资源管理器" { spawn "nautilus"; }
     Mod+E       hotkey-overlay-title="打开文件资源管理器" { spawn-sh "wezterm start --class yazi -- /usr/bin/fish -l -c yazi"; } // 传递 fish 环境变量
     Mod+I       hotkey-overlay-title="打开任务管理器" { spawn "missioncenter"; }
-    Mod+Shift+C hotkey-overlay-title="打开 OpenCode" { spawn-sh "wezterm start --class opencode -- /usr/bin/fish -l -c opencode"; } // 传递 fish 环境变量
+    Mod+R       hotkey-overlay-title="打开语音输入" { spawn-sh "vinput recording toggle"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
