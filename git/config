@@ -61,3 +61,6 @@ autoSetupRemote = true
 [rebase]
 # 在 rebase 前暂存, rebase 后恢复
 autoStash = true
+
+[commit]
+	gpgsign = true
