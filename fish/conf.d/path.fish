@@ -1,41 +1,52 @@
-set -gx PATH $PATH $HOME/.local/bin
+fish_add_path --path --append $HOME/.local/bin
 
 # cargo install
-set -gx PATH $PATH $HOME/.cargo/bin
+fish_add_path --path --append $HOME/.cargo/bin
 
-if test -d /opt/cuda
-    set -gx PATH $PATH /opt/cuda/bin
-end
+fish_add_path --path --append /opt/cuda/bin
 
 # for debian series
 if test -d /usr/local/cuda
     set -gx CUDA_HOME /usr/local/cuda
-    set -gx PATH $PATH /usr/local/cuda/bin
+    fish_add_path --path --append /usr/local/cuda/bin
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH /usr/local/cuda/lib64
 end
 
-if test -d /opt/rocm
-    set -gx PATH $PATH /opt/rocm/bin
-end
+fish_add_path --path --append /opt/rocm/bin
 
-# 检查 $HOME/opt 是否存在
-if test -d "$HOME/opt"
-    # 遍历 $HOME/opt 下的所有一级子目录
-    for sub in $HOME/opt/*
-        # 确保 sub 是一个目录
-        if test -d "$sub"
-            # 如果存在 bin 子目录，则将其添加到 PATH 中
-            if test -d "$sub/bin"
-                set -gx PATH $sub/bin $PATH
-            end
-            # 如果存在 lib 子目录，则将其添加到 LD_LIBRARY_PATH 中
-            if test -d "$sub/lib"
-                if test (uname) = "Linux"
-                    set -gx LD_LIBRARY_PATH $sub/lib $LD_LIBRARY_PATH
-                else if test (uname) = "Darwin"
-                    set -gx DYLD_LIBRARY_PATH $sub/lib $DYLD_LIBRARY_PATH
-                end
-            end
+# 递归发现 ~/opt 下各软件包的 bin 和 lib 目录
+begin
+    set -l opt_bin_dirs
+    set -l opt_lib_dirs
+
+    for dir in $HOME/opt/*/**/{bin,lib}
+        test -d $dir; or continue
+
+        switch (path basename $dir)
+            case bin
+                set -a opt_bin_dirs $dir
+            case lib
+                set -a opt_lib_dirs $dir
+        end
+    end
+
+    if set -q opt_bin_dirs[1]
+        fish_add_path --path $opt_bin_dirs
+    end
+
+    set -l lib_path_var
+    switch (uname)
+        case Linux
+            set lib_path_var LD_LIBRARY_PATH
+        case Darwin
+            set lib_path_var DYLD_LIBRARY_PATH
+    end
+
+    # 逆序 prepend，以保留递归 glob 的顺序，并避免重复添加
+    if set -q lib_path_var[1]; and set -q opt_lib_dirs[1]
+        for dir in $opt_lib_dirs[-1..1]
+            contains -- $dir $$lib_path_var
+            or set --global --export --prepend $lib_path_var $dir
         end
     end
 end
