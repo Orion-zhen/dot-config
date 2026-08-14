@@ -10,8 +10,6 @@ if test (date +%Z) = CST
     set -gx RUSTUP_DIST_SERVER "https://mirrors.cernet.edu.cn/rustup"
     if test (uname) = "Darwin"
         # Homebrew 相关设置
-        set -gx HOMEBREW_BREW_GIT_REMOTE "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
-        set -gx HOMEBREW_CORE_GIT_REMOTE "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
         set -gx HOMEBREW_API_DOMAIN "https://mirrors.cernet.edu.cn/homebrew-bottles/api"
         set -gx HOMEBREW_BOTTLE_DOMAIN "https://mirrors.cernet.edu.cn/homebrew-bottles"
         set -gx HOMEBREW_PIP_INDEX_URL "https://mirrors.cernet.edu.cn/pypi/web/simple"

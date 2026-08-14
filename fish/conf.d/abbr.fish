@@ -69,8 +69,8 @@ else if type -q pkg
     abbr autoclean "pkg autoclean"
 else if type -q brew
     abbr install "brew install"
-    abbr remove "brew uninstall --force"
-    abbr update "brew update && brew upgrade && brew upgrade --cask --greedy"
+    abbr remove "brew uninstall --force --zap"
+    abbr update "brew update && brew upgrade"
 else if type -q apt
     abbr update "sudo apt update && sudo apt upgrade"
     abbr autoremove "sudo apt autoremove"
