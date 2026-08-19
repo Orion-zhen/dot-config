@@ -1,5 +1,7 @@
 set -gx LANG zh_CN.UTF-8
 
+set -gx COLORTERM truecolor
+
 # fcitx5 输入法支持
 set -gx GTK_IN_MODULE fcitx
 set -gx QT_IM_MODULE fcitx
