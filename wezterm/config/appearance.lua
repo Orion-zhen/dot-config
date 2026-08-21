@@ -61,7 +61,7 @@ function module.apply(config)
     -- MACOS_FORCE_ENABLE_SHADOW: 启用阴影效果
     -- INTEGRATED_BUTTONS: 将窗口管理按钮内嵌到标签栏中
     if use_minimal then
-        config.window_decorations = "NONE"
+        config.window_decorations = "TITLE | RESIZE" -- 临时替换, WezTerm 的更新把 NONE 干烂了
     elseif is_macos then
         config.window_decorations = "RESIZE | MACOS_FORCE_ENABLE_SHADOW | INTEGRATED_BUTTONS"
     end
