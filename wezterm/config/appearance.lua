@@ -9,6 +9,7 @@ function module.apply(config)
     local use_minimal = is_hyprland or is_niri or is_kde
 
     local is_macos = (wezterm.target_triple == "aarch64-apple-darwin")
+    local is_windows = wezterm.target_triple:find("windows") ~= nil
 
     -- 默认窗口大小
     config.initial_rows = 32
@@ -52,6 +53,9 @@ function module.apply(config)
         -- 背景模糊
         config.macos_window_background_blur = 24
         config.window_background_opacity = 0.6
+    elseif is_windows then
+        config.window_background_opacity = 0.6
+        config.win32_system_backdrop = "Acrylic"
     end
 
     -- 窗口栏设置
@@ -64,6 +68,8 @@ function module.apply(config)
         config.window_decorations = "TITLE | RESIZE" -- 临时替换, WezTerm 的更新把 NONE 干烂了
     elseif is_macos then
         config.window_decorations = "RESIZE | MACOS_FORCE_ENABLE_SHADOW | INTEGRATED_BUTTONS"
+    elseif is_windows then
+        config.window_decorations = "RESIZE | INTEGRATED_BUTTONS"
     end
 
     -- 启用滚动条
