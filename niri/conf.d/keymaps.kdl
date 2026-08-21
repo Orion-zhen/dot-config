@@ -99,6 +99,13 @@ binds {
     Mod+Ctrl+Right { focus-column-last; }
     Mod+Up         { focus-window-or-workspace-up; }
     Mod+Down       { focus-window-or-workspace-down; }
+
+    // 在显示器之间循环切换焦点
+    Mod+Page_Up   hotkey-overlay-title="切换到上一个显示器" { focus-monitor-previous; }
+    Mod+Alt+Left  hotkey-overlay-title="切换到上一个显示器" { focus-monitor-previous; }
+    Mod+Page_Down hotkey-overlay-title="切换到下一个显示器" { focus-monitor-next; }
+    Mod+Alt+Right hotkey-overlay-title="切换到下一个显示器" { focus-monitor-next; }
+
     // 鼠标滚轮
     Mod+WheelScrollLeft  { focus-column-or-monitor-left; }
     Mod+WheelScrollRight { focus-column-or-monitor-right; }
