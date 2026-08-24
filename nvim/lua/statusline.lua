@@ -1,142 +1,176 @@
--- Git branch function with caching and Nerd Font icon
-local cached_branch = ""
-local last_check = 0
-local function git_branch()
-  local now = vim.loop.now()
-  if now - last_check > 5000 then -- Check every 5 seconds
-    cached_branch = vim.fn.system("git branch --show-current 2>/dev/null | tr -d '\n'")
-    last_check = now
-  end
-  if cached_branch ~= "" then
-    return " \u{e725} " .. cached_branch .. " " -- nf-dev-git_branch
-  end
-  return ""
+-- mini.icons 根据文件路径和 filetype 返回 Nerd Font 图标及对应高亮组.
+local MiniIcons = require("mini.icons")
+
+-- M 保存状态栏公开函数. 点击处理函数必须能从 v:lua 全局表达式访问, 因此文件末尾会导出为 Statusline.
+local M = {}
+
+-- nvim_get_mode().mode 返回短模式代码. 部分模式包含额外后缀, 因此 mode() 会在精确匹配失败后尝试首字符.
+local mode_labels = {
+  n = "\u{f121}  普通", -- 普通模式.
+  no = "\u{f121}  等待操作范围", -- 已输入 d, y 等操作符, 正在等待移动范围.
+  i = "\u{f11c}  插入", -- 插入模式.
+  v = "\u{f0168} 可视", -- 按字符选择的可视模式.
+  V = "\u{f0168} 可视行", -- 按整行选择的可视模式.
+  ["\22"] = "\u{f0168} 可视块", -- Ctrl+v 进入的块选择模式.
+  c = "\u{f120} 命令", -- : 命令行模式.
+  s = "\u{f0c5} 选择", -- 按字符选择的选择模式.
+  S = "\u{f0c5} 选择行", -- 按整行选择的选择模式.
+  ["\19"] = "\u{f0c5} 选择块", -- 块选择模式.
+  R = "\u{f044} 替换", -- 替换模式.
+  r = "\u{f044} 替换", -- 单字符替换或等待替换字符的状态.
+  ["!"] = "\u{f489} 外部命令", -- 正在执行外部 shell 命令.
+  t = "\u{f120} 终端", -- 终端输入模式.
+}
+
+local function mode()
+  local current = vim.api.nvim_get_mode().mode
+  return mode_labels[current] or mode_labels[current:sub(1, 1)] or current
 end
 
--- File type with Nerd Font icon
-local function file_type()
-  local ft = vim.bo.filetype
-  local icons = {
-    lua = "\u{e620} ",        -- nf-dev-lua
-    python = "\u{e73c} ",     -- nf-dev-python
-    javascript = "\u{e74e} ", -- nf-dev-javascript
-    typescript = "\u{e628} ", -- nf-dev-typescript
-    javascriptreact = "\u{e7ba} ",
-    typescriptreact = "\u{e7ba} ",
-    html = "\u{e736} ",     -- nf-dev-html5
-    css = "\u{e749} ",      -- nf-dev-css3
-    scss = "\u{e749} ",
-    json = "\u{e60b} ",     -- nf-dev-json
-    markdown = "\u{e73e} ", -- nf-dev-markdown
-    vim = "\u{e62b} ",      -- nf-dev-vim
-    sh = "\u{f489} ",       -- nf-oct-terminal
-    bash = "\u{f489} ",
-    zsh = "\u{f489} ",
-    rust = "\u{e7a8} ",  -- nf-dev-rust
-    go = "\u{e724} ",    -- nf-dev-go
-    c = "\u{e61e} ",     -- nf-dev-c
-    cpp = "\u{e61d} ",   -- nf-dev-cplusplus
-    java = "\u{e738} ",  -- nf-dev-java
-    php = "\u{e73d} ",   -- nf-dev-php
-    ruby = "\u{e739} ",  -- nf-dev-ruby
-    swift = "\u{e755} ", -- nf-dev-swift
-    kotlin = "\u{e634} ",
-    dart = "\u{e798} ",
-    elixir = "\u{e62d} ",
-    haskell = "\u{e777} ",
-    sql = "\u{e706} ",
-    yaml = "\u{f481} ",
-    toml = "\u{e615} ",
-    xml = "\u{f05c} ",
-    dockerfile = "\u{f308} ", -- nf-linux-docker
-    gitcommit = "\u{f418} ",  -- nf-oct-git_commit
-    gitconfig = "\u{f1d3} ",  -- nf-fa-git
-    vue = "\u{fd42} ",        -- nf-md-vuejs
-    svelte = "\u{e697} ",
-    astro = "\u{e628} ",
-  }
+-- 返回带高亮切换标记的文件图标.
+-- 状态栏中的 %#组名# 用来切换高亮组, 因为 Lua format 会处理百分号, 字符串中需要写成 %%.
+local function file_icon(bufnr, base_highlight)
+  local name = vim.api.nvim_buf_get_name(bufnr)
+  local filetype = vim.bo[bufnr].filetype
+  -- 已保存文件按完整文件路径查找图标. 未命名缓冲区没有路径, 改为按 filetype 查找.
+  local category = name == "" and "filetype" or "file"
+  local icon_name = name == "" and filetype or name
+  local icon, highlight = MiniIcons.get(category, icon_name)
 
-  if ft == "" then
-    return " \u{f15b} " -- nf-fa-file_o
-  end
-
-  return ((icons[ft] or " \u{f15b} ") .. ft)
+  -- 图标使用 mini.icons 返回的颜色, 随后恢复到调用方指定的状态栏高亮组.
+  return ("%%#%s#%s%%#%s#"):format(highlight, icon, base_highlight)
 end
 
--- File size with Nerd Font icon
-local function file_size()
-  local size = vim.fn.getfsize(vim.fn.expand("%"))
-  if size < 0 then
+-- 状态栏把 % 解释为格式指令. Git 分支名来自外部数据, 其中的 % 必须变成 %% 才能原样显示.
+local function escape_statusline(value)
+  return value:gsub("%%", "%%%%")
+end
+
+-- Gitsigns 会在每个已连接缓冲区的 b:gitsigns_status_dict 中维护分支和变更数量.
+-- 直接读取这个表可以避免状态栏每次重绘时执行 git 子进程.
+local function git_status(bufnr)
+  local status = vim.b[bufnr].gitsigns_status_dict
+  if not status then
+    return "" -- 普通文件或非 Git 文件没有 Gitsigns 状态.
+  end
+
+  local parts = {}
+  if status.head and status.head ~= "" then
+    parts[#parts + 1] = "\u{e725} " .. escape_statusline(status.head)
+  end
+  if status.added and status.added > 0 then
+    parts[#parts + 1] = "%#GitSignsAdd#+" .. status.added .. "%#StatusLine#"
+  end
+  if status.changed and status.changed > 0 then
+    parts[#parts + 1] = "%#GitSignsChange#~" .. status.changed .. "%#StatusLine#"
+  end
+  if status.removed and status.removed > 0 then
+    parts[#parts + 1] = "%#GitSignsDelete#-" .. status.removed .. "%#StatusLine#"
+  end
+
+  if #parts == 0 then
     return ""
   end
-  local size_str
-  if size < 1024 then
-    size_str = size .. "B"
-  elseif size < 1024 * 1024 then
-    size_str = string.format("%.1fK", size / 1024)
-  else
-    size_str = string.format("%.1fM", size / 1024 / 1024)
-  end
-  return " \u{f016} " .. size_str .. " " -- nf-fa-file_o
+  return " " .. table.concat(parts, " ")
 end
 
--- Mode indicators with Nerd Font icons
-local function mode_icon()
-  local mode = vim.fn.mode()
-  local modes = {
-    n = " \u{f121}  NORMAL",
-    i = " \u{f11c}  INSERT",
-    v = " \u{f0168} VISUAL",
-    V = " \u{f0168} V-LINE",
-    ["\22"] = " \u{f0168} V-BLOCK",
-    c = " \u{f120} COMMAND",
-    s = " \u{f0c5} SELECT",
-    S = " \u{f0c5} S-LINE",
-    ["\19"] = " \u{f0c5} S-BLOCK",
-    R = " \u{f044} REPLACE",
-    r = " \u{f044} REPLACE",
-    ["!"] = " \u{f489} SHELL",
-    t = " \u{f120} TERMINAL",
+-- 统计当前缓冲区中每个严重级别的诊断数量.
+local function diagnostics(bufnr)
+  local count = vim.diagnostic.count(bufnr)
+  local severity = vim.diagnostic.severity
+  local parts = {}
+  -- 每项依次包含诊断级别常量, 状态栏缩写和对应高亮组.
+  local definitions = {
+    { severity.ERROR, "错误", "DiagnosticError" },
+    { severity.WARN, "警告", "DiagnosticWarn" },
+    { severity.INFO, "信息", "DiagnosticInfo" },
+    { severity.HINT, "提示", "DiagnosticHint" },
   }
-  return modes[mode] or (" \u{f059} " .. mode)
+
+  for _, definition in ipairs(definitions) do
+    local amount = count[definition[1]] or 0
+    if amount > 0 then
+      -- 只显示数量大于 0 的级别, 并在每段结束后恢复 StatusLine 高亮.
+      parts[#parts + 1] = ("%%#%s#%s:%d%%#StatusLine#"):format(definition[3], definition[2], amount)
+    end
+  end
+
+  return table.concat(parts, " ")
 end
 
-_G.mode_icon = mode_icon
-_G.git_branch = git_branch
-_G.file_type = file_type
-_G.file_size = file_size
+-- 只有附加信息非空时才添加  分隔符, 避免出现连续的空分段.
+local function append_metadata(statusline, value)
+  if value ~= "" then
+    statusline[#statusline + 1] = " \u{e0b1} " .. value
+  end
+end
 
-vim.cmd([[
-  highlight StatusLineBold gui=bold cterm=bold
-]])
+-- 当前窗口显示完整状态. statusline 是字符串数组, 最后一次性连接可以避免大量 .. 表达式难以阅读.
+local function active_statusline(bufnr)
+  local statusline = {
+    "  ", -- 左侧留出两个空格.
+    mode(),
+    " \u{e0b1} ",
+    -- %N@函数@ 开始可点击区域. N 作为第一个参数传给回调, 这里使用缓冲区编号.
+    ("%%%d@v:lua.Statusline.open_file@"):format(bufnr),
+    file_icon(bufnr, "StatusLine"),
+    " %f %h%m%r", -- 使用原生格式项显示文件路径, 帮助, 修改和只读状态.
+    "%X", -- 结束文件名的可点击区域.
+    git_status(bufnr),
+  }
 
--- Function to change statusline based on window focus
-local function setup_dynamic_statusline()
-  vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
-    callback = function()
-      vim.opt_local.statusline = table.concat({
-        "  ",
-        "%#StatusLineBold#",
-        "%{v:lua.mode_icon()}",
-        "%#StatusLine#",
-        " \u{e0b1} %f %h%m%r",  -- nf-pl-left_hard_divider
-        "%{v:lua.git_branch()}",
-        "\u{e0b1} ",            -- nf-pl-left_hard_divider
-        "%{v:lua.file_type()}",
-        "\u{e0b1} ",            -- nf-pl-left_hard_divider
-        "%{v:lua.file_size()}",
-        "%=",                   -- Right-align everything after this
-        " \u{f017} %l:%c  %P ", -- nf-fa-clock_o for line/col
-      })
-    end,
-  })
-  vim.api.nvim_set_hl(0, "StatusLineBold", { bold = true })
+  append_metadata(statusline, vim.bo[bufnr].filetype)
 
-  vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
-    callback = function()
-      vim.opt_local.statusline = "  %f %h%m%r \u{e0b1} %{v:lua.file_type()} %=  %l:%c   %P "
-    end,
+  local diagnostic_status = diagnostics(bufnr)
+  if diagnostic_status ~= "" then
+    -- 没有指定 N 时, 点击回调的第一个参数为 0. 诊断回调不需要知道具体缓冲区.
+    statusline[#statusline + 1] = " \u{e0b1} %@v:lua.Statusline.open_diagnostics@" .. diagnostic_status .. "%X"
+  end
+
+  -- %= 将后续内容推到最右侧. %l 和 %c 是当前行列, %p%% 使用纯数字显示文件位置百分比.
+  statusline[#statusline + 1] = "%= \u{f017} %l:%c  %p%% "
+  return table.concat(statusline)
+end
+
+-- 非当前窗口只显示文件名和位置, 减少分屏中的视觉干扰.
+local function inactive_statusline(bufnr)
+  return table.concat({
+    "  ",
+    file_icon(bufnr, "StatusLineNC"),
+    " %f %h%m%r",
+    "%= %l:%c  %p%% ",
   })
 end
 
-setup_dynamic_statusline()
+-- g:statusline_winid 由 Neovim 在计算状态栏时临时设置, 表示当前正在渲染哪个窗口的状态栏.
+function M.render()
+  local winid = vim.g.statusline_winid
+  local bufnr = vim.api.nvim_win_get_buf(winid)
+
+  if winid == vim.api.nvim_get_current_win() then
+    return active_statusline(bufnr)
+  end
+  return inactive_statusline(bufnr)
+end
+
+-- 状态栏点击函数固定接收 4 个参数: minwid, 点击次数, 鼠标按钮和修饰键.
+-- 这里只有左键需要执行操作, 所以未使用的参数以 _ 命名.
+function M.open_file(bufnr, _, button, _)
+  if button ~= "l" or not vim.api.nvim_buf_is_valid(bufnr) then
+    return
+  end
+  MiniFiles.open(vim.api.nvim_buf_get_name(bufnr))
+end
+
+function M.open_diagnostics(_, _, button, _)
+  if button == "l" then
+    -- 收集所有缓冲区诊断并立即打开问题列表, 用法与 <leader>cq 相同.
+    vim.diagnostic.setqflist({ open = true })
+  end
+end
+
+-- %! 表示整个 statusline 由后面的表达式生成. v:lua 只能访问全局 Lua 对象, 因此导出 M.
+_G.Statusline = M
+vim.o.statusline = "%!v:lua.Statusline.render()"
+
+return M

@@ -1,49 +1,46 @@
--- 定义 Nerd Fonts 图标
+-- 诊断级别使用 Nerd Font 图标. 末尾空格用于让图标和代码之间保留间距.
 local diagnostic_signs = {
-  Error = " ",
-  Warn  = " ",
-  Hint  = "󰠠 ",
-  Info  = " ",
+  Error = " ", -- 错误, 通常表示代码无法编译或运行.
+  Warn = " ", -- 警告, 代码可能可以运行, 但存在风险.
+  Hint = "󰠠 ", -- 提示, 例如可以简化的写法.
+  Info = " ", -- 信息, 严重程度低于警告.
 }
 
--- 核心显示与行为配置
 vim.diagnostic.config({
-  -- 虚拟文本 (代码行尾的内联提示)
+  -- virtual_text 控制显示在代码行末尾的诊断文字.
   virtual_text = {
-    prefix = "●",
-    spacing = 4,
-    source = "if_many", -- 当有多个诊断来源时，显示具体来源名称
+    prefix = "●", -- 每条行尾诊断前显示的符号.
+    spacing = 4, -- 代码和诊断文字之间保留 4 列空白.
+    source = "if_many", -- 只有多个诊断来源同时存在时才显示来源名称.
   },
 
-  -- 侧边栏图标
+  -- signs 控制左侧 signcolumn 中的诊断标记.
   signs = {
+    -- text 以诊断级别常量为键, 指定每个级别显示的图标.
     text = {
       [vim.diagnostic.severity.ERROR] = diagnostic_signs.Error,
-      [vim.diagnostic.severity.WARN]  = diagnostic_signs.Warn,
-      [vim.diagnostic.severity.INFO]  = diagnostic_signs.Info,
-      [vim.diagnostic.severity.HINT]  = diagnostic_signs.Hint,
+      [vim.diagnostic.severity.WARN] = diagnostic_signs.Warn,
+      [vim.diagnostic.severity.INFO] = diagnostic_signs.Info,
+      [vim.diagnostic.severity.HINT] = diagnostic_signs.Hint,
     },
-    -- 侧边栏的行号也改变颜色
+    -- numhl 指定诊断所在行的行号高亮组. 这里只突出错误和警告, 避免提示过多时界面太花.
     numhl = {
       [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-      [vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
-    }
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+    },
   },
 
-  -- 代码下划线
-  underline = true,
+  underline = true, -- 使用下划线标记存在诊断的代码范围.
+  update_in_insert = false, -- 插入模式中不刷新诊断, 避免输入尚未完成时提示不断闪烁.
+  severity_sort = true, -- 同一位置存在多条诊断时, 优先显示更严重的诊断.
 
-  -- 核心交互体验
-  update_in_insert = false, -- 敲打代码时保持安静，按 Esc 退出插入模式后才刷新报错
-  severity_sort = true,     -- 确保 Error 永远压制 Warn 和 Hint 显示在最前面
-
-  -- 错误详情悬浮窗 UI
+  -- float 控制 K, <leader>cd 或右键菜单打开的诊断悬浮窗.
   float = {
-    border = "rounded",
-    source = "always", -- 弹窗中始终明确指出是哪个 LSP 报的错
-    header = "",       -- 隐藏默认且冗余的 "Diagnostics:" 表头
-    prefix = "",       -- 隐藏列表默认的短横线，让排版更紧凑
-    focusable = false, -- 防止光标不小心切入悬浮窗
-    style = "minimal",
+    border = "rounded", -- 使用圆角边框.
+    source = "always", -- 始终显示诊断来源, 方便区分 LSP 或其他工具.
+    header = "", -- 不显示默认的 Diagnostics 标题.
+    prefix = "", -- 不在每条诊断前添加默认列表前缀.
+    focusable = false, -- 悬浮窗不接收焦点, 防止窗口切换时误入其中.
+    style = "minimal", -- 隐藏普通窗口中与悬浮诊断无关的界面元素.
   },
 })
