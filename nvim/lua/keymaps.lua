@@ -36,6 +36,20 @@ set("n", "<leader>u", "<Cmd>undolist<CR>", {
   desc = "显示撤销历史",
 })
 
+-- 搜索和替换
+set("n", "<C-f>", "/", {
+  desc = "在文件中搜索",
+})
+set("n", "<leader>h", ":%s/", {
+  desc = "在文件中替换",
+})
+set("x", "<leader>h", ":s/", {
+  desc = "在选中区域中替换",
+})
+set("n", "<Esc>", "<cmd>nohlsearch<CR>", {
+  desc = "清除搜索高亮",
+})
+
 -- MiniPick.builtin.files 调用文件选择器. 它会优先使用系统中的 rg 或 fd 获取候选文件.
 set("n", "<leader>ff", function()
   MiniPick.builtin.files()
