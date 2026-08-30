@@ -51,3 +51,4 @@ application/json=code.desktop
 video/mp4=org.kde.haruna.desktop
 text/x-tex=code.desktop
 x-scheme-handler/spk=spark-store.desktop
+x-scheme-handler/discord=vesktop.desktop
