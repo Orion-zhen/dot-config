@@ -21,6 +21,7 @@ application/wps-office.xls=libreoffice-calc.desktop;
 video/mp4=org.kde.haruna.desktop;
 text/x-tex=code.desktop;
 application/octet-stream=code.desktop;
+application/wps-office.docx=onlyoffice-desktopeditors.desktop;
 
 [Default Applications]
 application/pdf=zen.desktop;zen-browser.desktop;
@@ -52,3 +53,4 @@ video/mp4=org.kde.haruna.desktop
 text/x-tex=code.desktop
 x-scheme-handler/spk=spark-store.desktop
 x-scheme-handler/discord=vesktop.desktop
+application/wps-office.docx=onlyoffice-desktopeditors.desktop

@@ -48,7 +48,6 @@
          "width": 800,
          "height": 500
       },
-      "dim_around": true,
       "blur": {
          "enabled": true
       },
@@ -59,7 +58,8 @@
          "layer": "top",
          "keyboard_interactivity": "exclusive",
          "enabled": true
-      }
+      },
+      "material": "blur"
    },
    "keybinds": {
       "action.copy": "control+shift+C",
