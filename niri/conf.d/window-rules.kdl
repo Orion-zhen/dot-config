@@ -38,9 +38,9 @@ window-rule {
     }
 }
 
-// OpenCode 默认宽度 75%
+// 欧派 desktop 默认宽度 75%
 window-rule {
-    match app-id="opencode"
+    match app-id="opi-desktop"
 
     default-column-width { proportion 0.75; }
 }
