@@ -12,8 +12,20 @@ layout {
 
     // 新列默认的模式 normal/tabbed
     default-column-display "normal"
+    // 顶部标签指示条占用列内空间, 单标签时也显示以区分 tabbed 模式
     tab-indicator {
-        hide-when-single-tab
+        position "top"
+        place-within-column
+
+        width 8
+        gap 4
+        length total-proportion=0.98
+        gaps-between-tabs 4
+        corner-radius 4
+
+        active-color "#bac3ff"
+        inactive-color "#46464f"
+        urgent-color "#ffb4ab"
     }
 
     // 预设窗口宽度, 高度同理
@@ -57,6 +69,9 @@ layout {
         // To do that, set relative-to="workspace-view".
         //
         inactive-gradient from="#90909a" to="#46464f" angle=45 relative-to="workspace-view"
+
+        // 需要关注的窗口使用主题警示色
+        urgent-gradient from="#ffb4ab" to="#93000a" angle=45
     }
 
     // You can enable drop shadows for windows.
@@ -106,5 +121,30 @@ layout {
         // right 64
         // top 64
         // bottom 64
+    }
+}
+
+// 标记窗口共享目标, 包括动态共享目标, 不匹配整屏共享中的所有可见窗口
+window-rule {
+    match is-window-cast-target=true
+
+    border {
+        on
+        width 3
+
+        // 共享使用第三强调色, urgent 仍使用警示色
+        active-gradient from="#e5bad8" to="#5d3c55" angle=45
+        inactive-gradient from="#e5bad8" to="#5d3c55" angle=45
+        urgent-gradient from="#ffb4ab" to="#93000a" angle=45
+    }
+
+    // 失去焦点或进入 urgent 状态时, 光晕仍标识共享状态
+    shadow {
+        on
+        softness 12
+        spread 3
+        offset x=0 y=0
+        color "#e5bad899"
+        inactive-color "#e5bad899"
     }
 }
