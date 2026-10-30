@@ -7,6 +7,10 @@
 
 !clight.conf
 !code-flags.conf
+!chrome-flags.conf
+!chrome-beta-flags.conf
+!chrome-dev-flags.conf
+!chromium-flags.conf
 !electron-flags.conf
 
 !mimeapps.list

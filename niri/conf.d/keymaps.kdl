@@ -22,9 +22,13 @@ binds {
     Mod+Shift+M hotkey-overlay-title="最大平铺窗口" { expand-column-to-available-width; }
     // 全屏显示窗口
     Mod+F { fullscreen-window; }
+    // 让应用认为自己已经全屏了
+    Mod+Shift+F { toggle-windowed-fullscreen; }
 
     // 在预设列宽度之间切换
     Mod+W hotkey-overlay-title="在预设窗口宽度间切换" { switch-preset-column-width; }
+    // 切换纵向堆叠的列为 Tab 样式
+    Mod+T hotkey-overlay-title="切换堆叠样式" { toggle-column-tabbed-display; }
     // Mod +/- 增减列宽
     Mod+Minus { set-column-width "-5%"; }
     Mod+Equal { set-column-width "+5%"; }
@@ -60,7 +64,6 @@ binds {
     // Mod+V hotkey-overlay-title="打开剪切板历史" { spawn-sh "kitty --class clipse -e clipse"; }
 
     // 快捷启动
-    Mod+T       hotkey-overlay-title="打开终端" { spawn "wezterm"; }
     Mod+Return  hotkey-overlay-title="打开终端" { spawn "wezterm"; }
     Mod+Space   hotkey-overlay-title="打开启动器" { spawn-sh "vicinae toggle"; }
     // Mod+Space hotkey-overlay-title="打开启动器" { spawn-sh "dms ipc call spotlight toggle"; }

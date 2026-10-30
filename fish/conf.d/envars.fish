@@ -3,7 +3,7 @@ set -gx LANG zh_CN.UTF-8
 set -gx COLORTERM truecolor
 
 # fcitx5 输入法支持
-set -gx GTK_IN_MODULE fcitx
+# set -gx GTK_IN_MODULE fcitx
 set -gx QT_IM_MODULE fcitx
 set -gx XMODIFIERS "@im=fcitx"
 
@@ -27,8 +27,7 @@ end
 
 if test -d $HOME/models
     set -gx MODELS $HOME/models
-else
-    set -gx MODELS $HOME
+    set -gx FLM_MODEL_PATH $HOME
 end
 
 set -gx GPG_TTY $(tty)
