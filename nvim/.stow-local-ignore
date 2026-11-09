@@ -1,0 +1,6 @@
+# Ignore only package-root metadata, preserving .config/nvim/README.md and LICENSE.
+^/\.git$
+^/\.gitignore$
+^/\.stow-local-ignore$
+^/README\.md$
+^/LICENSE$

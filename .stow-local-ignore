@@ -1,6 +1,0 @@
-# Repository metadata stays in the package, not in ~/.config.
-^/\.git$
-^/\.gitignore$
-^/\.stow-local-ignore$
-^/README\.md$
-^/LICENSE$

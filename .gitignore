@@ -1,33 +1,33 @@
 # Machine-local settings and application state.
 .DS_Store
 
-/clight.d/*
-!/clight.d/*.example
+/clight/.config/clight.d/*
+!/clight/.config/clight.d/*.example
 
-/clipse/*
-!/clipse/config.json
-!/clipse/custom_theme.json
+/clipse/.config/clipse/*
+!/clipse/.config/clipse/config.json
+!/clipse/.config/clipse/custom_theme.json
 
-/fish/fish_variables
-/fish/conf.d/custom.fish
+/fish/.config/fish/fish_variables
+/fish/.config/fish/conf.d/custom.fish
 
-/git/*
-!/git/config
+/git/.config/git/*
+!/git/.config/git/config
 
-/hypr/land/monitors.conf
-/hyprpanel/*
-!/hyprpanel/config.json
+/hypr/.config/hypr/land/monitors.conf
+/hyprpanel/.config/hyprpanel/*
+!/hyprpanel/.config/hyprpanel/config.json
 
-/niri/conf.d/outputs.kdl
+/niri/.config/niri/conf.d/outputs.kdl
 
-/nvim/lazy-lock.json
-/nvim/lazyvim.json
-/nvim/nvim-pack-lock.json
+/nvim/.config/nvim/lazy-lock.json
+/nvim/.config/nvim/lazyvim.json
+/nvim/.config/nvim/nvim-pack-lock.json
 
-/systemd/*
-!/systemd/user/
-/systemd/user/*
-!/systemd/user/*.service
+/systemd/.config/systemd/*
+!/systemd/.config/systemd/user/
+/systemd/.config/systemd/user/*
+!/systemd/.config/systemd/user/*.service
 
 # Generated theme files.
 **/*dank*

@@ -1,95 +1,68 @@
 # dot-config
 
-使用 Git 保存配置，通过 GNU Stow 链接到 `~/.config`。Linux 和 macOS 共用同一套配置。
+用 Git 保存配置，用 GNU Stow 按软件分包部署到家目录。
 
-## 安装
+## 安装与部署
 
-先安装 Git 和 GNU Stow，然后克隆仓库：
+先安装 Git 和 GNU Stow，再克隆仓库：
 
 ```bash
 git clone git@github.com:Orion-zhen/dot-config.git ~/dot-config
-mkdir -p ~/.config
+cd ~/dot-config
+stow -n -v */    # 预览，确认无误后执行下一条
+stow -v */      # 部署全部包
 ```
 
-预览并部署全部配置：
+以下命令均在 `~/dot-config` 中执行，`.stowrc` 已将目标设为家目录。只管理部分包时，将命令中的 `*/` 换成包名，例如 `stow -v fish git nvim`。给 Stow 命令加上 `-n` 可以预览而不修改文件。
+
+## 修改与同步
+
+直接编辑仓库中的配置文件，无需重复部署。应用是否需要重载取决于软件本身。提交前检查差异，不要提交密码、令牌或本机运行数据。
 
 ```bash
-stow -n -v -d "$HOME" -t "$HOME/.config" dot-config # 预览配置
+git diff
+git add <配置路径>
+git commit -m "Update configuration"
+git push
 ```
+
+在其他机器上拉取并重新部署：
 
 ```bash
-stow -d "$HOME" -t "$HOME/.config" dot-config # 实际应用配置
+git pull --ff-only
+stow -R -v */
 ```
 
-目标位置已有同名普通文件时，Stow 会报告冲突。先备份并比较文件，再移走冲突文件，重新运行命令。不要直接覆盖整份 `~/.config`，也不要用 `--adopt` 无差别导入本机配置。
+若更新涉及删除或重命名整个包，拉取前先用 `stow -D <旧包名>` 撤销受影响的包。
 
-## 日常使用
+## 新增与调整配置
 
-直接修改 `~/.config` 中已链接的配置，就是修改仓库文件：
-
-```bash
-git -C ~/dot-config diff
-git -C ~/dot-config add <配置路径>
-git -C ~/dot-config commit -m "Update configuration"
-git -C ~/dot-config push
-```
-
-Stow 默认尽量链接整个目录。整目录链接下新建的文件会进入仓库工作区，由 `.gitignore` 排除本机设置和运行数据。已有目录混有未管理文件时，Stow 会保留该目录，按需链接其子目录或文件。
-
-如果新文件建在未整目录链接的位置，需要先把文件移到 `~/dot-config` 中的对应相对路径，再重新部署。不要把缓存或私密信息移入仓库。
-
-新增或删除仓库文件后，重新部署全部配置：
-
-```bash
-stow -R -d "$HOME" -t "$HOME/.config" dot-config
-```
-
-在另一台机器拉取配置后也运行该命令：
-
-```bash
-git -C ~/dot-config pull --ff-only
-stow -R -d "$HOME" -t "$HOME/.config" dot-config
-```
-
-`.stow-local-ignore` 只排除仓库根目录的元数据和文档，不排除应用目录内的同名文件。`.gitignore` 只控制 Git，不控制 Stow 的部署范围。
-
-## 命令与路径映射
-
-以这条命令为例：
-
-```bash
-stow -d "$HOME" -t "$HOME/.config" dot-config
-```
-
-- `-d "$HOME"`：指定 Stow 查找配置组的父目录，即 `~`，不是仓库目录本身。
-- `dot-config`：配置组名称，与 `-d` 拼接后得到源目录 `~/dot-config`。
-- `-t "$HOME/.config"`：指定链接的目标目录，即 `~/.config`。
-
-Stow 将配置组内部的相对路径映射到目标目录，不会在目标目录下额外创建一层 `dot-config`：
+仓库根目录的每个非隐藏子目录都是一个包，包内路径对应家目录下的路径。例如：
 
 ```text
-源文件：< -d 目录 >/<配置组>/<相对路径>
-目标位置：< -t 目录 >/<相对路径>
-
-~/dot-config/fish/config.fish  → ~/.config/fish/config.fish
-~/dot-config/btop/btop.conf    → ~/.config/btop/btop.conf
-~/dot-config/starship.toml     → ~/.config/starship.toml
+fish/.config/fish/config.fish  → ~/.config/fish/config.fish
+starship/.config/starship.toml → ~/.config/starship.toml
 ```
 
-上面的箭头表示部署映射。实际符号链接的方向是从目标位置指向仓库。Stow 默认尽量链接整个目录，例如：
+新增软件时，先备份现有配置，再将配置移到 `<包名>/<相对于家目录的路径>`，然后执行 `stow -v <包名>`。不要在仓库根目录混放 `docs/` 等非包目录。
 
-```text
-~/.config/btop → ../dot-config/btop
-```
-
-因此，访问 `~/.config/btop/btop.conf` 就是在访问 `~/dot-config/btop/btop.conf`。如果目标目录已经存在，Stow 会按需进入目录，为子目录或文件建立链接。
-
-`-n` 表示只预览，`-v` 表示显示操作详情，`-R` 表示先撤销再重新部署，`-D` 表示只撤销链接。这些选项不改变路径映射关系。由于命令显式指定了绝对路径，运行时不必先进入仓库目录。
-
-## 撤销链接
+新增、删除或移动包内文件后，重新部署对应包：
 
 ```bash
-stow -D -d "$HOME" -t "$HOME/.config" dot-config
+stow -R -v fish
 ```
 
-这会撤销 Stow 管理的链接，保留仓库源文件和目标目录中的未管理文件。不要删除仍被链接引用的仓库目录。
+本机专属文件按包内路径加入 `.gitignore`。它只控制 Git，不会阻止 Stow 部署这些文件。
+
+## 撤销、删除与移动
+
+```bash
+stow -D -v nvim  # 撤销一个包
+stow -D -v */    # 撤销全部包
+```
+
+撤销部署会移除 Stow 管理的链接，保留仓库配置和目标目录中未管理的文件。
+
+- 删除或重命名包：先撤销旧包，再修改目录。重命名后用新包名重新部署。
+- 移动仓库：先撤销全部包，移动后进入新位置重新部署所需包。
+- 停止使用：先撤销全部包，再按需备份或删除仓库。需要继续使用的配置应另行复制回原位置。
