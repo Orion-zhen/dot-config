@@ -52,8 +52,8 @@ binds {
     // Print { screenshot show-pointer=false; }
     // Mod+X hotkey-overlay-title="屏幕截图" { screenshot show-pointer=false; }
     // Mod+Shift+S { screenshot show-pointer=false; }
-    Print { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f -"; }
-    Mod+X hotkey-overlay-title="屏幕截图" { spawn-sh "grim -t ppm -g \"$(slurp -d)\" - | satty -f -"; }
+    Print { spawn-sh "region=$(slurp -d) || exit 0; image=$(mktemp) || exit 1; trap 'rm -f \"$image\"' EXIT; grim -t ppm -g \"$region\" \"$image\" && satty -f \"$image\""; }
+    Mod+X hotkey-overlay-title="屏幕截图" { spawn-sh "region=$(slurp -d) || exit 0; image=$(mktemp) || exit 1; trap 'rm -f \"$image\"' EXIT; grim -t ppm -g \"$region\" \"$image\" && satty -f \"$image\""; }
     Mod+Shift+S { screenshot show-pointer=false; }
 
     // 剪切板管理

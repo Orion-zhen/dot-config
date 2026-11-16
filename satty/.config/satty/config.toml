@@ -11,7 +11,7 @@ brush-smooth-history-size = 5
 # [possible values: save-to-clipboard, save-to-file, save-to-file-as, copy-filepath-to-clipboard, exit]
 actions-on-escape = ["save-to-clipboard", "exit"]
 # Action to perform when the Enter key is pressed [possible values: save-to-clipboard, save-to-file]
-action-on-enter = "save-to-file"
+actions-on-enter = ["save-to-file"]
 
 [font]
 family = "Maple Mono NF"
